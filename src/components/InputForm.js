@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import RenderForm from './RenderForm';
 
 function InputForm(props) { 
   /**

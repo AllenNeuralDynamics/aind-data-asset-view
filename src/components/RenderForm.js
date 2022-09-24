@@ -15,7 +15,7 @@ function RenderForm(props) {
 
   const [schema, setSchema] = useState();
 
-  const URL = 'https://raw.githubusercontent.com/AllenNeuralDynamics/data_schema/main/schemas';
+  // const URL = 'https://raw.githubusercontent.com/AllenNeuralDynamics/data_schema/main/schemas';
 
   useEffect(() => {
     if (currentInput == null || currentInput === '') {
