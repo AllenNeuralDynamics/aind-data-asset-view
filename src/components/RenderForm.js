@@ -1,6 +1,5 @@
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
 import metadata from '../metadata';
+import RenderRow from './RenderRow';
 
 
 function RenderForm(props) {
@@ -13,63 +12,45 @@ function RenderForm(props) {
    * @return {string} JSON object is returned as a string
    */
 
-  // const currentInput = props.userInput;
-
-  // const [schema, setSchema] = useState();
-
-  // const URL = 'https://raw.githubusercontent.com/AllenNeuralDynamics/data_schema/main/schemas';
-
-  // useEffect(() => {
-  //   if (currentInput == null || currentInput === '') {
-  //     return;
-  //   }
-  //   fetch(`${URL}/${currentInput}.json`)
-  //     .then(results => results.json())
-  //     .then(data => {
-  //       setSchema(data);
-  //     });
-  // }, [currentInput]);
+  // console.log(Object.keys(metadata.results[0]))
 
 
-  // const dataStringify = JSON.stringify(metadata, null, 4)
-  console.log(metadata.results)
+  const getKeys = () => {
+    return Object.keys(metadata.results[0])
+  }
 
-  const displayMetadata = metadata.results.map((info) => {
-    return (
-      <tr key={info.id}>
-        <td>{info.id}</td>
-        <td>{info.name}</td>
-        <td>{info.state}</td>
-        <td>{info.type}</td>
-        <td>{info.tags}</td>
-        <td>{info.created}</td>
-      </tr>
-    )
-  })
+  const getHeader = () => {
+    let keys = getKeys();
+
+    return keys.map((key, index) => {
+      return <th key={key}>{key.toUpperCase()}</th>
+    })
+  }
+
+  const rowData = () => {
+    let items = metadata.results;
+    let keys = getKeys();
+
+    return items.map((row, index) => {
+      return (
+      <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
+      )
+    })
+  }
+
 
     return (
-      // Renders JSON file directly
-      // <pre id="json">
-      //   {dataStringify}
-      // </pre>
-
       <table>
         <thead>
           <tr>
-          <th>ID</th>
-          <th>File name</th>
-          <th>State</th>
-          <th>Type</th>
-          <th>Tags</th>
-          <th>Created</th>
+          {getHeader()}
           </tr>
         </thead>
         <tbody>
-          {displayMetadata}
+          {rowData()}
         </tbody>
       </table>
     )
-
 };
 
 export default RenderForm;
