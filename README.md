@@ -84,7 +84,8 @@ Update 'scripts' in the package.json file to include:
 
 ```
 "lint": "eslint \"**/*.{js,jsx}\"",
-"lint-fix": "eslint --fix"
+"lint-fix": "eslint --fix \"**/*.{js,jsx}\""
 ```
 
 Once the package.json file is updated, you can run `npm run lint` to execute the linter. 
+Run `npm run lint-fix` to execute and fix warnings.
