@@ -18,12 +18,14 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
         "linebreak-style": ["error", "windows"],
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
+        "react/jsx-props-no-spreading": ["warn"],
         "quotes": [
             "error",
             "single"

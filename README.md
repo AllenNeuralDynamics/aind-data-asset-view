@@ -1,4 +1,5 @@
 # aind-data-asset-view
+
 React application to interact with CodeOcean's API to view registered data assets.
 
 ## Getting Started with Create React App
@@ -74,18 +75,54 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Setting up ESLint
 
-In the project directory, run:
+In the project root directory, run:
 
 #### `npm init @eslint/config`
 
 This will install ESLint and create a config file (.eslintrc). I've selected the Airbnb Style Guide and JSON for the config file format.
 
-Update 'scripts' in the package.json file to include:
+In the package.json file update 'scripts' to include:
 
 ```
 "lint": "eslint \"**/*.{js,jsx}\"",
 "lint-fix": "eslint --fix \"**/*.{js,jsx}\""
 ```
 
-Once the package.json file is updated, you can run `npm run lint` to execute the linter. 
+Once the package.json file is updated, you can run `npm run lint` to execute the linter.
 Run `npm run lint-fix` to execute and fix warnings.
+
+## Setting up Prettier
+
+In the project root directory, run:
+
+#### `npm install prettier eslint-config-prettier eslint-plugin-prettier - -save-dev`
+
+In the .eslintrc.json file, update 'plugins' to:
+
+```
+"plugins": [
+        "react",
+        "prettier"
+    ],
+```
+
+Prettier should be last in the array to overwrite previous rules.
+
+In the project root directory, create a .prettierrc file.
+
+Below is my current Prettier config.
+
+```
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true
+}
+```
+
+Apply Prettier when files are saved in VSCode:
+
+- Install the Prettier extension
+- Go into Settings
+- Search for 'Formatter' and set Prettier as the 'Default Formatter'
+- Enable 'Format on Save'
