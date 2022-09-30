@@ -12,7 +12,14 @@ function RenderForm(props) {
    * @return {string} JSON object is returned as a string
    */
 
-  // console.log(Object.keys(metadata.results[0]))
+  // console.log(Object.keys(metadata.results))
+  // console.log(typeof metadata.results)
+  // console.log(metadata.results[0]['created'])
+
+  // const test = metadata.results[0]['created']
+
+  // const test = new Date(metadata.results[0]['created']* 1000).toString();
+  // console.log(test)
 
 
   const getKeys = () => {
@@ -31,7 +38,17 @@ function RenderForm(props) {
     let items = metadata.results;
     let keys = getKeys();
 
-    return items.map((row, index) => {
+    // Creating a deep copy of the data
+    const itemsCopy = JSON.parse(JSON.stringify(items))
+
+    // Converting UNIX timestamp
+    itemsCopy.forEach(curObj => {
+      curObj.created = new Date(curObj.created * 1000).toLocaleString();
+
+      itemsCopy.push(curObj.created)
+    });
+
+    return itemsCopy.map((row, index) => {
       return (
       <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
       )
