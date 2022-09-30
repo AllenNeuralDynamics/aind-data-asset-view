@@ -12,16 +12,6 @@ function RenderForm(props) {
    * @return {string} JSON object is returned as a string
    */
 
-  // console.log(Object.keys(metadata.results))
-  // console.log(typeof metadata.results)
-  // console.log(metadata.results[0]['created'])
-
-  // const test = metadata.results[0]['created']
-
-  // const test = new Date(metadata.results[0]['created']* 1000).toString();
-  // console.log(test)
-
-
   const getKeys = () => {
     return Object.keys(metadata.results[0])
   }
@@ -30,7 +20,7 @@ function RenderForm(props) {
     let keys = getKeys();
 
     return keys.map((key, index) => {
-      return <th key={key}>{key.toUpperCase()}</th>
+      return <th key={index}>{key.toUpperCase()}</th>
     })
   }
 
