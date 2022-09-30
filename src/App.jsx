@@ -5,8 +5,8 @@ import RenderForm from './components/RenderForm';
 function App() {
   const [data, setData] = useState('');
 
-  const childToParent = (childdata) => {
-    setData(childdata);
+  const childToParent = (childData) => {
+    setData(childData);
   };
 
   return (
