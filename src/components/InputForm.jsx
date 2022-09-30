@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-// import RenderForm from './RenderForm';
 
 function InputForm({ handleData }) {
   /**
-   * Function to read user input from input form and passes user input to RenderForm component
-   * @param {func} handleData is passed to InputForm as a prop
-   * @return {string} userInput is passed to RenderForm as a prop
+   * Function to read user input from form submit, update state, and pass to parent component.
+   * @param {func} handleData
+   * @return {string} userInput
    */
 
   const [userInput, setUserInput] = useState('');
