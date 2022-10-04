@@ -33,11 +33,14 @@ function RenderForm() {
 
   // console.log(typeof schema)
   // console.log(schema)
-  console.log(Object.keys(schema[0]))
+  // const headers = Object.keys(schema[0])
+  // console.log(headers)
 
-  const getKeys = () => {
-    return Object.keys(schema[0])
-  };
+  console.log(Object.keys(schema))
+
+  // const getKeys = () => {
+  //   return Object.keys(schema[0])
+  // };
 
   // console.log(getKeys())
 
@@ -48,27 +51,49 @@ function RenderForm() {
   //   )
   // }
 
-  const getHeader = () => {
-    let keys = getKeys();
+  // const getHeader = () => {
+  //   let keys = getKeys();
 
-    return keys.map((key, index) => {
-      return <th key={key}>{key.toUpperCase()}</th>
-    })
-  }
+  //   return keys.map((key, index) => {
+  //     return <th key={key}>{key.toUpperCase()}</th>
+  //   })
+  // }
 
-  // return (
-  //   <pre id="json">{JSON.stringify(schema, null, 4)}</pre>
-  // );
+
+  // for (let obj in schema) {
+  //   console.log(obj)
+  // }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {getHeader()}
-        </tr>
-      </thead>
-    </table>
-  )
+    <pre id="json">{JSON.stringify(schema, null, 4)}</pre>
+  );
+
+  // return (
+  //   <table>
+  //     <thead>
+  //       <tr>
+  //         {getHeader()}
+  //       </tr>
+  //     </thead>
+  //   </table>
+  // )
+
+  // const displaySchema = schema.results.map((info) => {
+  //   return (
+  //     <tr key={info.id}>
+  //       <td>{info.id}</td>
+  //       <td>{info.name}</td>
+  //       <td>{info.state}</td>
+  //       <td>{info.type}</td>
+  //       <td>{info.tags}</td>
+  //       <td>{info.created}</td>
+  //     </tr>
+  //   )
+  // })
+
+  // return (
+  //   {displaySchema}
+  // )
 };
 
 export default RenderForm;
