@@ -6,7 +6,7 @@ function InputForm(props) {
    * @return {string} userInput is passed to RenderForm as a prop 
    */
 
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState('');
 
   const handleChange = (event) => {
     setUserInput(event.target.value)

@@ -1,19 +1,19 @@
-// import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import RenderForm from './components/RenderForm';
-// import InputForm from './components/InputForm';
+import InputForm from './components/InputForm';
 
 function App() {
   
-  // const [data, setData] = useState();
+  const [data, setData] = useState('');
 
-  // const childToParent = (childData) => {
-  //   setData(childData);
-  // }
+  const childToParent = (childData) => {
+    setData(childData);
+  }
   
   return (
     <div>
-      {/* <InputForm handleData={childToParent}/> */}
-      <RenderForm/>
+      <InputForm handleData={childToParent}/>
+      <RenderForm userInput={data}/>
     </div>
   );
 };
