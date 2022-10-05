@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import RenderRow from './RenderRow';
 
 function RenderForm() {
@@ -7,7 +7,7 @@ function RenderForm() {
    * Perform GET request 
    * Render response from GET request
    *  
-   * @return {string} JSON object is returned as a string
+   * @return {React.ReactComponentElement} Table header and rows 
    * 
    */
   
@@ -32,9 +32,6 @@ function RenderForm() {
 
     getResponse() 
   }, [])
-
-  // console.log(typeof schema[0]['created'])
-  // {created: 1665001825, description: '', files: 31, id: '21a89214-0089-4db2-986f-d575fcb94edc', last_used: 0, …}
 
   const getKeys = () => {
     // Use keys of first object for table header but if null or undefined, set to empty object
