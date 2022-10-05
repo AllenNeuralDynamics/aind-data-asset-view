@@ -21,22 +21,27 @@ function RenderForm() {
     //   return;
     // }
 
-    fetch(URL)
-    .then(response => response.json())
-    .then(response => {
-      if (response['has_more']){
-        setSchema(response['results']);
-      }
-    })
-    .catch(error => console.log(error));
-  }, [])
+    async function getResponse() {
+      const response = await fetch(URL, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+        },
+      });
+      const data = await response.json();
 
-  // console.log(typeof schema)
+      if (data['has_more']) {
+        setSchema(data['results']);
+      }
+    }
+    getResponse();
+  }, [])
+  
   // console.log(schema)
   // const headers = Object.keys(schema[0])
   // console.log(headers)
 
-  console.log(Object.keys(schema))
+  // console.log(Object.keys(schema))
 
   // const getKeys = () => {
   //   return Object.keys(schema[0])
@@ -66,6 +71,11 @@ function RenderForm() {
 
   return (
     <pre id="json">{JSON.stringify(schema, null, 4)}</pre>
+    // <div>
+    //   <ul>
+    //     {schema.map((data) => <li key={data.id}> {data.description}</li>)}
+    //   </ul>
+    // </div>
   );
 
   // return (
@@ -78,7 +88,7 @@ function RenderForm() {
   //   </table>
   // )
 
-  // const displaySchema = schema.results.map((info) => {
+  // const displaySchema = schema.map((info) => {
   //   return (
   //     <tr key={info.id}>
   //       <td>{info.id}</td>
@@ -92,7 +102,21 @@ function RenderForm() {
   // })
 
   // return (
+  //   <table>
+  //   <thead>
+  //     <tr>
+  //     <th>ID</th>
+  //     <th>File name</th>
+  //     <th>State</th>
+  //     <th>Type</th>
+  //     <th>Tags</th>
+  //     <th>Created</th>
+  //     </tr>
+  //   </thead>
+  //   <tbody>
   //   {displaySchema}
+  //   </tbody>
+  //   </table>
   // )
 };
 
