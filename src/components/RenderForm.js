@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import RenderRow from './RenderRow';
 
 function RenderForm() {
   /**
@@ -35,47 +36,56 @@ function RenderForm() {
   // console.log(typeof schema[0]['created'])
   // {created: 1665001825, description: '', files: 31, id: '21a89214-0089-4db2-986f-d575fcb94edc', last_used: 0, …}
 
-  const Header = ({ array }) => {
-    let counter = 0
-
+  const getKeys = () => {
     // Use keys of first object for table header but if null or undefined, set to empty object
-    const headers = Object.keys(array[0] ?? {});
+    return Object.keys(schema[0] ?? {});
+  }
 
-    return headers.map((title) => {
+  const getHeader = () => {
+    let counter = 0
+    let headers = getKeys();
+
+    return headers.map((key) => {
       ++counter; 
 
       return (
-        <th key={counter}>{title.toUpperCase()}</th>
+        <th key={counter}>{key.toUpperCase()}</th>
       );
     });
   };
-  
-  const displayData = schema.map((info) => {
-    return (
-      <tr key={info.id}>
-        <td>{info.created}</td>
-        <td>{info.description}</td>
-        <td>{info.files}</td>
-        <td>{info.id}</td>
-        <td>{info.last_used}</td>
-        <td>{info.name}</td>
-        <td>{info.size}</td>
-        <td>{info.state}</td>
-        <td>{info.tags}</td>
-        <td>{info.type}</td>
-      </tr>
-    )
-  })
+
+  const rowData = () => {
+    let rows = schema;
+    let keys = getKeys();
+
+    // Creating a deep copy of the data
+    const rowCopy = JSON.parse(JSON.stringify(rows))
+
+    // Converting UNIX timestamp
+    rowCopy.forEach(curObj => {
+      curObj.created = new Date(curObj.created * 1000).toLocaleString();
+
+      rowCopy.push(curObj.created)
+    });
+
+    return rowCopy.map((row, index) => {
+      return (
+        <tr key={index}>
+          <RenderRow key={index} data={row} keys={keys}/>
+        </tr>
+      )
+    })
+  }
 
   return (
     <table>
     <thead>
       <tr>
-      <Header array={schema}></Header>
+      {getHeader()}
       </tr>
     </thead>
     <tbody>
-    {displayData}
+    {rowData()}
     </tbody>
     </table>
   )
