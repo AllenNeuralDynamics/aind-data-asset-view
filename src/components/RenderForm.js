@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
-// import metadata from '../metadata.json';
 
 function RenderForm() {
   /**
-   * Read user input from InputForm component.
-   * Perform GET request based on user input
+   *
+   * Perform GET request 
    * Render response from GET request
    *  
-   * @param {string} userInput is passed in and used for GET request
    * @return {string} JSON object is returned as a string
-   * url = http://localhost:8080/data_assets
    * 
-   * metadata is an object of objects: {{},{},{}, ...}
-   * response from localhost is array of objects: [{},{},{},...]
    */
   
   const [schema, setSchema] = useState([]);
@@ -20,11 +15,6 @@ function RenderForm() {
   const URL = 'http://localhost:8080/data_assets';
 
   useEffect(() => {
-
-    // if (userInput === null || userInput === ''){
-    //   return;
-    // }
-
     async function getResponse() {
       const response = await fetch(URL, {
         method: 'GET',
@@ -36,31 +26,43 @@ function RenderForm() {
 
       if (data['has_more']) {
         setSchema(data['results']);
-        // console.log(data)
       }
     }
-    getResponse();
+
+    getResponse() 
   }, [])
+
+  // console.log(typeof schema[0]['created'])
+  // {created: 1665001825, description: '', files: 31, id: '21a89214-0089-4db2-986f-d575fcb94edc', last_used: 0, …}
+
+  const Header = ({ array }) => {
+    let counter = 0
+
+    // Use keys of first object for table header but if null or undefined, set to empty object
+    const headers = Object.keys(array[0] ?? {});
+
+    return headers.map((title) => {
+      ++counter; 
+
+      return (
+        <th key={counter}>{title.toUpperCase()}</th>
+      );
+    });
+  };
   
-  // an object of objects
-  // {has_more: true, results: [{},{},{}]}
-  // console.log(metadata)
-
-  // an array of objects
-  // when schema = data['results'] then schema = [{"created": 123124, "files": 33, "last_used": 0,...},{}, {}, ...]
-  // console.log(schema)
-
-
-  
-  const displaySchema = schema.map((info) => {
+  const displayData = schema.map((info) => {
     return (
       <tr key={info.id}>
-        <td>{info.id}</td>
-        <td>{info.name}</td>
-        <td>{info.state}</td>
-        <td>{info.type}</td>
-        <td>{info.tags}</td>
         <td>{info.created}</td>
+        <td>{info.description}</td>
+        <td>{info.files}</td>
+        <td>{info.id}</td>
+        <td>{info.last_used}</td>
+        <td>{info.name}</td>
+        <td>{info.size}</td>
+        <td>{info.state}</td>
+        <td>{info.tags}</td>
+        <td>{info.type}</td>
       </tr>
     )
   })
@@ -69,16 +71,11 @@ function RenderForm() {
     <table>
     <thead>
       <tr>
-      <th>ID</th>
-      <th>File name</th>
-      <th>State</th>
-      <th>Type</th>
-      <th>Tags</th>
-      <th>Created</th>
+      <Header array={schema}></Header>
       </tr>
     </thead>
     <tbody>
-    {displaySchema}
+    {displayData}
     </tbody>
     </table>
   )
