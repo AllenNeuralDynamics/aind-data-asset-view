@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import InputForm from './components/InputForm';
 import RenderForm from './components/RenderForm';
-import InputForm from './components/InputForm';
 
 function App() {
   const [data, setData] = useState('');
