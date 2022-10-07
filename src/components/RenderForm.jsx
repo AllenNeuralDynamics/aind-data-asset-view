@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import RenderRow from './RenderRow';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function RenderForm() {
+function RenderForm({ userInput }) {
   /**
    *
    * Perform GET request 
@@ -86,6 +86,10 @@ function RenderForm() {
     </tbody>
     </table>
   )
+};
+
+RenderForm.propTypes = {
+  userInput: PropTypes.string.isRequired,
 };
 
 export default RenderForm;
