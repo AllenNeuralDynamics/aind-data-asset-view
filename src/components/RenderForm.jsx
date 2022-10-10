@@ -22,6 +22,7 @@ function RenderForm() {
 
       if (data.has_more) {
         setSchema(data.results);
+        console.log(schema);
       }
     }
 
@@ -29,7 +30,9 @@ function RenderForm() {
   }, []);
   const getKeys = () => {
     // Use keys of first object for table header but if null or undefined, set to empty object
-    return Object.keys(schema[0] ?? {});
+    const keys = Object.keys(schema[0] ?? {});
+
+    return keys;
   };
 
   const getHeader = () => {
@@ -54,11 +57,10 @@ function RenderForm() {
 
     // Converting UNIX timestamp
     rowCopy.forEach((curObj) => {
-      const convertedObj = new Date(curObj.created * 1000).toLocaleString();
+      curObj.created = new Date(curObj.created * 1000).toLocaleString();
 
-      rowCopy.push(convertedObj);
+      rowCopy.push(curObj.created);
     });
-
     let counter = 0;
 
     return rowCopy.map((row) => {
