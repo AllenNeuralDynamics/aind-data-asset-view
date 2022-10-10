@@ -7,8 +7,7 @@ function App() {
 
   const childToParent = (childData) => {
     setData(childData);
-  }
-  
+  };
   return (
     <div>
       <InputForm handleData={childToParent} />

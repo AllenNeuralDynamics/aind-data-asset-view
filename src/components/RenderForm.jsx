@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import RenderRow from './RenderRow';
 
-function RenderForm({ userInput }) {
+function RenderForm() {
   /**
-   *
-   * Perform GET request 
+   * Perform GET request
    * Render response from GET request
-   *  
-   * @return {React.ReactComponentElement} Table header and rows 
-   * 
+   * @return {React.ReactComponentElement} Table header and rows
    */
-  
   const [schema, setSchema] = useState([]);
-  
   const URL = 'http://localhost:8080/data_assets';
 
   useEffect(() => {
@@ -25,25 +20,24 @@ function RenderForm({ userInput }) {
       });
       const data = await response.json();
 
-      if (data['has_more']) {
-        setSchema(data['results']);
+      if (data.has_more) {
+        setSchema(data.results);
       }
     }
 
-    getResponse() 
-  }, [])
-
+    getResponse();
+  }, []);
   const getKeys = () => {
     // Use keys of first object for table header but if null or undefined, set to empty object
     return Object.keys(schema[0] ?? {});
-  }
+  };
 
   const getHeader = () => {
-    let counter = 0
-    let headers = getKeys();
+    let counter = 0;
+    const headers = getKeys();
 
     return headers.map((key) => {
-      ++counter; 
+      counter += 1;
 
       return (
         <th key={counter}>{key.toUpperCase()}</th>
@@ -52,44 +46,43 @@ function RenderForm({ userInput }) {
   };
 
   const rowData = () => {
-    let rows = schema;
-    let keys = getKeys();
+    const rows = schema;
+    const keys = getKeys();
 
     // Creating a deep copy of the data
-    const rowCopy = JSON.parse(JSON.stringify(rows))
+    const rowCopy = JSON.parse(JSON.stringify(rows));
 
     // Converting UNIX timestamp
-    rowCopy.forEach(curObj => {
-      curObj.created = new Date(curObj.created * 1000).toLocaleString();
+    rowCopy.forEach((curObj) => {
+      const convertedObj = new Date(curObj.created * 1000).toLocaleString();
 
-      rowCopy.push(curObj.created)
+      rowCopy.push(convertedObj);
     });
 
-    return rowCopy.map((row, index) => {
+    let counter = 0;
+
+    return rowCopy.map((row) => {
+      counter += 1;
       return (
-        <tr key={index}>
-          <RenderRow key={index} data={row} keys={keys}/>
+        <tr key={counter}>
+          <RenderRow key={counter} data={row} keys={keys} />
         </tr>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <table>
-    <thead>
-      <tr>
-      {getHeader()}
-      </tr>
-    </thead>
-    <tbody>
-    {rowData()}
-    </tbody>
+      <thead>
+        <tr>
+          {getHeader()}
+        </tr>
+      </thead>
+      <tbody>
+        {rowData()}
+      </tbody>
     </table>
-  )
-};
-
-RenderForm.propTypes = {
-  userInput: PropTypes.string.isRequired,
-};
+  );
+}
 
 export default RenderForm;
