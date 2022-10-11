@@ -19,13 +19,12 @@ function RenderForm() {
         },
       });
       const data = await response.json();
-
+      setSchema(data.results);
+      console.log(schema);
       if (data.has_more) {
-        setSchema(data.results);
-        console.log(schema);
+        getResponse();
       }
     }
-
     getResponse();
   }, []);
   const getKeys = () => {
@@ -50,7 +49,9 @@ function RenderForm() {
 
   const rowData = () => {
     const rows = schema;
+    // console.log(rows);
     const keys = getKeys();
+    let counter = 0;
 
     // Creating a deep copy of the data
     const rowCopy = JSON.parse(JSON.stringify(rows));
@@ -61,7 +62,6 @@ function RenderForm() {
 
       rowCopy.push(curObj.created);
     });
-    let counter = 0;
 
     return rowCopy.map((row) => {
       counter += 1;
