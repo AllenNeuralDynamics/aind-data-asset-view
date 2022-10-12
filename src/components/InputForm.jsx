@@ -32,6 +32,9 @@ function InputForm({ handleData }) {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" value={userInput} onChange={handleChange} />
+      {/* Start and Limit for search index */}
+      <input type="text" placeholder="start" />
+      <input type="text" placeholder="limit" />
       {/* Sort By dropdown */}
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="asc">Ascending</option>
