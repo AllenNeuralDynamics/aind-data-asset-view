@@ -9,15 +9,13 @@ function RenderForm({ userInput }) {
    */
 
   const [schema, setSchema] = useState([]);
-  const URL = 'http://localhost:8080/data_assets?type=';
+  const URL = 'http://localhost:8080/data_assets?type=dataset';
 
   useEffect(() => {
     const getResponse = async () => {
-      if (userInput === 'dataset') {
-        const response = await fetch(`${URL}${userInput}`);
-        const data = await response.json();
-        setSchema(data.results);
-      }
+      const response = await fetch(URL);
+      const data = await response.json();
+      setSchema(data.results);
     };
     getResponse();
   }, [userInput]);
@@ -36,7 +34,7 @@ function RenderForm({ userInput }) {
     </tr>
   ));
 
-  if (userInput === 'dataset') {
+  if (userInput) {
     return (
       <table>
         <thead>
