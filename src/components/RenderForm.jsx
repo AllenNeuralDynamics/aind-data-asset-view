@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import RenderRow from './RenderRow';
 
 function RenderForm({ userInput }) {
   /**
@@ -22,62 +21,39 @@ function RenderForm({ userInput }) {
     getResponse();
   }, [userInput]);
 
-  const getKeys = () => {
-    // Use keys of first object for table header but if null or undefined, set to empty object
-    return Object.keys(schema[0] ?? {});
-  };
+  const displaySchema = schema.map((info) => (
 
-  const getHeader = () => {
-    let counter = 0;
-    const headers = getKeys();
-
-    return headers.map((key) => {
-      counter += 1;
-
-      return (
-        <th key={counter}>{key.toUpperCase()}</th>
-      );
-    });
-  };
-
-  const rowData = () => {
-    const rows = schema;
-    const keys = getKeys();
-    let rowCount = 0;
-
-    // Creating a deep copy of the data
-    const rowCopy = JSON.parse(JSON.stringify(rows));
-
-    // Converting UNIX timestamp
-    rowCopy.forEach((curObj) => {
-      curObj.created = new Date(curObj.created * 1000).toLocaleString();
-
-      rowCount += 1;
-      rowCopy.push(curObj.created);
-    });
-
-    return rowCopy.map((row, rowCount) => {
-      return (
-        <tr key={rowCount}>
-          <RenderRow key={rowCount} data={row} keys={keys} />
-        </tr>
-      );
-    });
-  };
+    <tr key={info.id}>
+      <td>{info.id}</td>
+      <td>{info.created}</td>
+      <td>{info.name}</td>
+      <td>{info.state}</td>
+      <td>{info.type}</td>
+      <td>{info.tags}</td>
+      <td>{info.description}</td>
+      <td>{info.files}</td>
+      <td>{info.size}</td>
+    </tr>
+  ));
 
   if (userInput) {
-    // return (
-    //   <pre id="json">{JSON.stringify(schema, null, 4)}</pre>
-    // );
     return (
       <table>
         <thead>
           <tr>
-            {getHeader()}
+            <th>ID</th>
+            <th>Created</th>
+            <th>File Name</th>
+            <th>State</th>
+            <th>Type</th>
+            <th>Tags</th>
+            <th>Description</th>
+            <th>Files</th>
+            <th>Size</th>
           </tr>
         </thead>
         <tbody>
-          {rowData()}
+          {displaySchema}
         </tbody>
       </table>
     );
