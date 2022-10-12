@@ -9,23 +9,23 @@ function RenderForm({ userInput }) {
    */
 
   const [schema, setSchema] = useState([]);
-  const URL = 'http://localhost:8080/data_assets?type=dataset';
-
-  const getResponse = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-    setSchema(data.results);
-  };
+  const URL = 'http://localhost:8080/data_assets?type=';
 
   useEffect(() => {
+    const getResponse = async () => {
+      if (userInput === 'dataset') {
+        const response = await fetch(`${URL}${userInput}`);
+        const data = await response.json();
+        setSchema(data.results);
+      }
+    };
     getResponse();
   }, [userInput]);
 
   const displaySchema = schema.map((info) => (
-
     <tr key={info.id}>
       <td>{info.id}</td>
-      <td>{info.created}</td>
+      <td>{new Date(info.created * 1000).toLocaleString()}</td>
       <td>{info.name}</td>
       <td>{info.state}</td>
       <td>{info.type}</td>
@@ -36,7 +36,7 @@ function RenderForm({ userInput }) {
     </tr>
   ));
 
-  if (userInput) {
+  if (userInput === 'dataset') {
     return (
       <table>
         <thead>
