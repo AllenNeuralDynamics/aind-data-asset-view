@@ -12,7 +12,7 @@ function InputForm({ handleData }) {
 
   const [userInput, setUserInput] = useState('');
   const [selectedField, setSelectedField] = useState(sortFieldOptions[0]);
-  const [sortBy, setSortBy] = useState('');
+  const [sortBy, setSortBy] = useState('asc');
 
   const handleChange = (event) => {
     setUserInput(event.target.value);
@@ -31,14 +31,18 @@ function InputForm({ handleData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={userInput} onChange={handleChange} />
+      {/* Type dropdown */}
+      <select value={userInput} onChange={handleChange}>
+        <option value="Result">Result</option>
+        <option value="Dataset">Dataset</option>
+      </select>
       {/* Start and Limit for search index */}
       <input type="number" placeholder="Start" min="0" max="30" />
       <input type="number" placeholder="Limit" min="0" max="30" />
-      {/* Type dropdown */}
+      {/* Sort order dropdown */}
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-        <option value="Dataset">Dataset</option>
-        <option value="Result">Result</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
       </select>
       {/* Sort Field dropdown */}
       <select value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
