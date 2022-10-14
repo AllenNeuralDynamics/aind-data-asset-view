@@ -3,7 +3,7 @@ import InputForm from './components/InputForm';
 import RenderForm from './components/RenderForm';
 
 function App() {
-  const [data, setData] = useState('');
+  const [data, setData] = useState();
 
   const childToParent = (childData) => {
     setData(childData);
