@@ -19,19 +19,19 @@ function InputForm({ handleData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <select name="type" value="">
+      <select name="type" defaultValue="">
         {/* <option value="result">Result</option> */}
-        <option value="dataset">Dataset</option>
+        <option defaultValue="dataset">Dataset</option>
       </select>
-      <input name="start" type="number" min="0" max="30" value="0" />
-      <input name="limit" type="number" min="0" max="30" value="0" />
+      <input name="start" type="number" min="0" max="30" defaultValue="0" />
+      <input name="limit" type="number" min="0" max="30" defaultValue="0" />
       <select name="sort_order">
-        <option value="asc">Ascending</option>
-        <option value="desc">Descending</option>
+        <option defaultValue="asc">Ascending</option>
+        <option defaultValue="desc">Descending</option>
       </select>
       <select name="sort_field">
         {sortFieldOptions.map((value) => (
-          <option value={value.toLowerCase()} key={value}>{value}</option>
+          <option defaultValue={value.toLowerCase()} key={value}>{value}</option>
         ))}
       </select>
       <button type="submit">

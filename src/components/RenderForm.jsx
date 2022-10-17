@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { urlBuilder } from '../utilities/utils';
 
 function RenderForm({ userInput }) {
   /**
@@ -9,74 +10,63 @@ function RenderForm({ userInput }) {
    */
 
   const [schema, setSchema] = useState();
-  const url = new URL('http://localhost:8080/data_assets?');
 
-  const urlBuilder = (userInput) => {
-    const queryParams = new URLSearchParams(userInput);
-    // console.log(queryparams.toString());
-    // console.log(queryparams.entries());
-    // queryparams.forEach(function (value, key) {
-    //   console.log(key, value);
-    // });
-    // console.log(url);
-    return queryParams;
-  };
+  const urlProxy = 'http://localhost:8080/data_assets';
 
   useEffect(() => {
     if (userInput) {
-      urlBuilder(userInput);
+      const url = urlBuilder(urlProxy, userInput);
       const getResponse = async () => {
-        const response = await fetch(url, {
-          method: 'GET',
-          body: queryParams,
-        });
+        const response = await fetch(url)
+          .catch((error) => {
+            console.log(error);
+          });
         const data = await response.json();
         setSchema(data.results);
       };
       getResponse();
-      // setSchema('testing');
     }
   }, [userInput]);
 
-  // if (schema) {
-  //   const displaySchema = schema.map((info) => (
-  //     <tr key={info.id}>
-  //       <td>{info.id}</td>
-  //       <td>{new Date(info.created * 1000).toLocaleString()}</td>
-  //       <td>{info.name}</td>
-  //       <td>{info.state}</td>
-  //       <td>{info.type}</td>
-  //       <td>{info.tags}</td>
-  //       <td>{info.description}</td>
-  //       <td>{info.files}</td>
-  //       <td>{info.size}</td>
-  //     </tr>
-  //   ));
+  if (schema) {
+    const displaySchema = schema.map((info) => (
+      <tr key={info.id}>
+        <td>{info.id}</td>
+        <td>{new Date(info.created * 1000).toLocaleString()}</td>
+        <td>{info.name}</td>
+        <td>{info.state}</td>
+        <td>{info.type}</td>
+        <td>{info.tags}</td>
+        <td>{info.description}</td>
+        <td>{info.files}</td>
+        <td>{info.size}</td>
+      </tr>
+    ));
 
-  //   return (
-  //     <table>
-  //       <thead>
-  //         <tr>
-  //           <th>ID</th>
-  //           <th>Created</th>
-  //           <th>File Name</th>
-  //           <th>State</th>
-  //           <th>Type</th>
-  //           <th>Tags</th>
-  //           <th>Description</th>
-  //           <th>Files</th>
-  //           <th>Size</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {displaySchema}
-  //       </tbody>
-  //     </table>
-  //   );
-  // }
-  // return (
-  //   <p />
-  // );
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Created</th>
+            <th>File Name</th>
+            <th>State</th>
+            <th>Type</th>
+            <th>Tags</th>
+            <th>Description</th>
+            <th>Files</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          {displaySchema}
+        </tbody>
+      </table>
+    );
+  }
+  return (
+    <p />
+  );
 }
 
 RenderForm.propTypes = {
