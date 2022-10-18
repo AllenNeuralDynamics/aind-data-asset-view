@@ -23,7 +23,7 @@ function InputForm({ handleData }) {
         {/* <option value="result">Result</option> */}
         <option defaultValue="dataset">Dataset</option>
       </select>
-      <input name="start" type="number" min="0" max="30" defaultValue="0" />
+      <input name="from" type="number" min="0" max="30" defaultValue="0" />
       <input name="limit" type="number" min="0" max="30" defaultValue="0" />
       <select name="sort_order">
         <option defaultValue="asc">Ascending</option>
