@@ -95,7 +95,7 @@ Run `npm run lint-fix` to execute and fix warnings.
 
 In the project root directory, run:
 
-#### `npm install prettier eslint-config-prettier eslint-plugin-prettier - -save-dev`
+#### `npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev`
 
 In the .eslintrc.json file, update 'plugins' to:
 
