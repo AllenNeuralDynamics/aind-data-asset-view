@@ -84,8 +84,8 @@ This will install ESLint and create a config file (.eslintrc). I've selected the
 In the package.json file update 'scripts' to include:
 
 ```
-"lint": "eslint \"**/*.{js,jsx}\"",
-"lint-fix": "eslint --fix \"**/*.{js,jsx}\""
+"lint": "eslint \"src/**/*.{js,jsx}\"",
+"lint-fix": "eslint --fix \"src/**/*.{js,jsx}\""
 ```
 
 Once the package.json file is updated, you can run `npm run lint` to execute the linter.
