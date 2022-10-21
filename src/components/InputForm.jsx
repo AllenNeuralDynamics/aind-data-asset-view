@@ -18,23 +18,23 @@ function InputForm({ handleData }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <select name="type" defaultValue="">
+    <form onSubmit={handleSubmit} data-testid="form">
+      <select name="type" defaultValue="" data-testid="select-type">
         {/* <option value="result">Result</option> */}
         <option defaultValue="dataset">Dataset</option>
       </select>
       <input name="start" type="number" min="0" max="30" defaultValue="0" />
       <input name="limit" type="number" min="0" max="200" defaultValue="0" />
-      <select name="sort_order">
+      <select name="sort_order" data-testid="select-sort-order">
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
-      <select name="sort_field">
+      <select name="sort_field" data-testid="select-sort-field">
         {sortFieldOptions.map((value) => (
           <option defaultValue={value.toLowerCase()} key={value}>{value}</option>
         ))}
       </select>
-      <button type="submit">
+      <button type="submit" data-testid="submit-btn" aria-hidden="true">
         Submit
       </button>
     </form>
@@ -42,7 +42,10 @@ function InputForm({ handleData }) {
 }
 
 InputForm.propTypes = {
-  handleData: PropTypes.func.isRequired,
+  handleData: PropTypes.func,
+};
+InputForm.defaultProps = {
+  handleData: undefined,
 };
 
 export default InputForm;
