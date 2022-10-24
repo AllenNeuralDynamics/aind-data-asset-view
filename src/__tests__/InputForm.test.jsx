@@ -1,9 +1,8 @@
 import React from 'react';
-// import selectEvent from 'react-select-event';
+import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { act, render, screen } from '@testing-library/react';
+import { act, getByRole, render, waitFor } from '@testing-library/react';
 import InputForm from '../components/InputForm';
-
 
 const setup = () => {
   const { getByTestId, getByText, getByLabelText } = render(<InputForm />);
@@ -12,11 +11,14 @@ const setup = () => {
   const typeSelect = getByTestId('select-type');
   const orderSelect = getByTestId('select-sort-order');
   const sortFieldSelect = getByTestId('select-sort-field');
+  const startIndex = getByTestId('start-index');
+  const limitIndex = getByTestId('limit-index');
   
-  return {buttonElement, typeSelect, orderSelect, sortFieldSelect, getByText, getByLabelText} 
+  return {buttonElement, typeSelect, orderSelect, 
+    sortFieldSelect, getByText, getByLabelText,
+    startIndex, limitIndex,
+  } 
 };
-
-
 
 describe('test input form', () => {
 
@@ -29,7 +31,6 @@ describe('test input form', () => {
     expect(sortFieldSelect).toBeInTheDocument();
   });
 
-  
   test('Should display correct number of data asset type options', () => {
     const { typeSelect } = setup();
     expect(typeSelect.length).toBe(1);
@@ -59,7 +60,30 @@ describe('test input form', () => {
     expect(getByText('Descending')).toBeInTheDocument();
   })
 
-  // test submit button when clicked --> expect the response?
-  // test start
+  test('Should default number for start index', () => {
+    const { startIndex } = setup();
+    expect(startIndex.value).toBe("0")
+  })
+
+  test('Should clear form and type number 30 for start index', async () => {
+    const { startIndex } = setup();
+    userEvent.clear(startIndex);
+    await userEvent.type(startIndex, "30");
+    expect(startIndex.value).toBe("30")
+  })
+
   // test limit
+  test('Should default number for limit index', () => {
+    const { limitIndex } = setup();
+    expect(limitIndex.value).toBe("0")
+  })
+
+  test('Should clear form and type number 125 for start index', async () => {
+    const { limitIndex } = setup();
+    userEvent.clear(limitIndex);
+    await userEvent.type(limitIndex, "125");
+    expect(limitIndex.value).toBe("125")
+  })
+
+  // test submit button when clicked --> expect the response?
 });
