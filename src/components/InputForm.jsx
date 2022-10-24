@@ -12,7 +12,6 @@ function InputForm({ handleData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
     const formDataObject = Object.fromEntries(formData.entries());
     handleData(formDataObject);
   };

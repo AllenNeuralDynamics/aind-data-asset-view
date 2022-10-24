@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { act, getByRole, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import InputForm from '../components/InputForm';
 
 const setup = () => {
@@ -72,7 +72,6 @@ describe('test input form', () => {
     expect(startIndex.value).toBe("30")
   })
 
-  // test limit
   test('Should default number for limit index', () => {
     const { limitIndex } = setup();
     expect(limitIndex.value).toBe("0")
@@ -86,4 +85,17 @@ describe('test input form', () => {
   })
 
   // test submit button when clicked --> expect the response?
+  test('Form should submit correct output', () => {
+    const mockSubmit = jest.fn();
+    const { queryByTestId } = render(<InputForm handleData={mockSubmit}/>);
+    
+    fireEvent.change(queryByTestId('select-type'), {target: {value: 'Dataset'}});
+    fireEvent.change(queryByTestId('start-index'), {target: {value: '9'}});
+    fireEvent.change(queryByTestId('limit-index'), {target: {value: '10'}});
+    fireEvent.change(queryByTestId('select-sort-order'), {target: {value: 'asc'}});
+    fireEvent.change(queryByTestId('select-sort-field'), {target: {value: 'Created'}});
+    fireEvent.submit(queryByTestId('form'));
+    expect(mockSubmit).toHaveBeenCalled();
+    expect(mockSubmit.mock.calls).toEqual([[{type: 'Dataset', start: '9', limit: '10', sort_order: 'asc', sort_field: 'Created'}]]);
+  });
 });
