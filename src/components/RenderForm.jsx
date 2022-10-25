@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
+import getResponse from '../utilities/getResponse';
 
 function RenderForm({ userInput }) {
   /**
@@ -13,25 +14,28 @@ function RenderForm({ userInput }) {
 
   const urlProxy = 'http://localhost:8080/data_assets';
 
-  const handleErrors = (response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    } return response;
-  };
+  // const handleErrors = (response) => {
+  //   if (!response.ok) {
+  //     throw new Error(response.status);
+  //   } return response;
+  // };
+
+  // const getResponse = async (url) => {
+  //   const response = await fetch(url)
+  //     .catch((error) => {
+  //       handleErrors(error);
+  //     });
+  //   const data = await response.json();
+  //   setSchema(data.results);
+  // };
 
   useEffect(() => {
     if (userInput) {
       const url = urlBuilder(urlProxy, userInput);
-      const getResponse = async () => {
-        const response = await fetch(url)
-          .catch((error) => {
-            handleErrors(error);
-          });
-        const data = await response.json();
-        setSchema(data.results);
-      };
-      getResponse();
+      const response = getResponse(url);
+      setSchema(response);
     }
+    // eslint-disable-next-line
   }, [userInput]);
 
   if (schema) {

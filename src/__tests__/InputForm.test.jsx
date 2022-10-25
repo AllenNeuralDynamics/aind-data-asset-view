@@ -1,29 +1,33 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { act, fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import InputForm from '../components/InputForm';
 
 const setup = () => {
-  const { getByTestId, getByText, getByLabelText } = render(<InputForm />);
-  
-  const buttonElement = getByTestId('submit-btn');
-  const typeSelect = getByTestId('select-type');
-  const orderSelect = getByTestId('select-sort-order');
-  const sortFieldSelect = getByTestId('select-sort-field');
-  const startIndex = getByTestId('start-index');
-  const limitIndex = getByTestId('limit-index');
-  
-  return {buttonElement, typeSelect, orderSelect, 
-    sortFieldSelect, getByText, getByLabelText,
-    startIndex, limitIndex,
-  } 
+  render(<InputForm />);
+  const buttonElement = screen.getByTestId('submit-btn');
+  const typeSelect = screen.getByTestId('select-type');
+  const orderSelect = screen.getByTestId('select-sort-order');
+  const sortFieldSelect = screen.getByTestId('select-sort-field');
+  const startIndex = screen.getByTestId('start-index');
+  const limitIndex = screen.getByTestId('limit-index');
+
+  return {
+    buttonElement,
+    typeSelect,
+    orderSelect,
+    sortFieldSelect,
+    startIndex,
+    limitIndex,
+  };
 };
 
 describe('test input form', () => {
-
   test('Render input fields correctly', () => {
-    const { buttonElement, typeSelect, orderSelect, sortFieldSelect, startIndex, limitIndexq } = setup();
+    const {
+      buttonElement, typeSelect, orderSelect,
+      sortFieldSelect, startIndex, limitIndex,
+    } = setup();
 
     expect(buttonElement).toBeInTheDocument();
     expect(typeSelect).toBeInTheDocument();
@@ -44,60 +48,62 @@ describe('test input form', () => {
   });
 
   test('Show selected sort field option on click', async () => {
-    const { getByText } = setup();
-    const selectedItem = getByText('Size');
-    await act(async () => userEvent.click(selectedItem));
-    expect(getByText('Size')).toBeInTheDocument();
+    const { sortFieldSelect } = setup();
+    expect(sortFieldSelect.value).toEqual('Created');
+
+    fireEvent.change(sortFieldSelect, { target: { value: 'Size' } });
+    expect(sortFieldSelect.value).toEqual('Size');
   });
-  
+
   test('Displays correct number of sort order options', () => {
     const { orderSelect } = setup();
     expect(orderSelect.length).toBe(2);
-  })
+  });
 
   test('Show selected sort order on click', async () => {
-    const { getByText } = setup();
-    const selectedOrder = getByText('Descending');
-    await act(async () => userEvent.click(selectedOrder));
-    expect(getByText('Descending')).toBeInTheDocument();
-  })
+    const { orderSelect } = setup();
+    fireEvent.change((orderSelect), { target: {value: 'desc'}})
+    expect(orderSelect.value).toEqual('desc');
+  });
 
   test('Should default number for start index', () => {
     const { startIndex } = setup();
-    expect(startIndex.value).toBe("0")
-  })
+    expect(startIndex.value).toBe('0');
+  });
 
   test('Should clear form and type number 30 for start index', async () => {
     const { startIndex } = setup();
     userEvent.clear(startIndex);
-    await userEvent.type(startIndex, "30");
-    expect(startIndex.value).toBe("30")
-  })
+    userEvent.type(startIndex, '30');
+    expect(startIndex.value).toBe('30');
+  });
 
   test('Should default number for limit index', () => {
     const { limitIndex } = setup();
-    expect(limitIndex.value).toBe("0")
-  })
+    expect(limitIndex.value).toBe('0');
+  });
 
   test('Should clear form and type number 125 for start index', async () => {
     const { limitIndex } = setup();
     userEvent.clear(limitIndex);
-    await userEvent.type(limitIndex, "125");
-    expect(limitIndex.value).toBe("125")
-  })
+    userEvent.type(limitIndex, '125');
+    expect(limitIndex.value).toBe('125');
+  });
 
   // test submit button when clicked --> expect the response?
   test('Form should submit correct output', () => {
     const mockSubmit = jest.fn();
-    const { queryByTestId } = render(<InputForm handleData={mockSubmit}/>);
-    
-    fireEvent.change(queryByTestId('select-type'), {target: {value: 'Dataset'}});
-    fireEvent.change(queryByTestId('start-index'), {target: {value: '9'}});
-    fireEvent.change(queryByTestId('limit-index'), {target: {value: '10'}});
-    fireEvent.change(queryByTestId('select-sort-order'), {target: {value: 'asc'}});
-    fireEvent.change(queryByTestId('select-sort-field'), {target: {value: 'Created'}});
+    const { queryByTestId } = render(<InputForm handleData={mockSubmit} />);
+
+    fireEvent.change(queryByTestId('select-type'), { target: { value: 'Dataset' } });
+    fireEvent.change(queryByTestId('start-index'), { target: { value: '9' } });
+    fireEvent.change(queryByTestId('limit-index'), { target: { value: '10' } });
+    fireEvent.change(queryByTestId('select-sort-order'), { target: { value: 'asc' } });
+    fireEvent.change(queryByTestId('select-sort-field'), { target: { value: 'Created' } });
     fireEvent.submit(queryByTestId('form'));
     expect(mockSubmit).toHaveBeenCalled();
-    expect(mockSubmit.mock.calls).toEqual([[{type: 'Dataset', start: '9', limit: '10', sort_order: 'asc', sort_field: 'Created'}]]);
+    expect(mockSubmit.mock.calls).toEqual([[{
+      type: 'Dataset', start: '9', limit: '10', sort_order: 'asc', sort_field: 'Created',
+    }]]);
   });
 });

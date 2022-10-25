@@ -30,7 +30,7 @@ function InputForm({ handleData }) {
       </select>
       <select name="sort_field" data-testid="select-sort-field">
         {sortFieldOptions.map((value) => (
-          <option defaultValue={value.toLowerCase()} key={value}>{value}</option>
+          <option defaultValue={value.toLowerCase()} key={value} data-testid="sort-field-option">{value}</option>
         ))}
       </select>
       <button type="submit" data-testid="submit-btn" aria-hidden="true">
