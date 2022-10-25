@@ -62,7 +62,7 @@ describe('test input form', () => {
 
   test('Show selected sort order on click', async () => {
     const { orderSelect } = setup();
-    fireEvent.change((orderSelect), { target: {value: 'desc'}})
+    fireEvent.change((orderSelect), { target: { value: 'desc' } });
     expect(orderSelect.value).toEqual('desc');
   });
 
@@ -93,14 +93,14 @@ describe('test input form', () => {
   // test submit button when clicked --> expect the response?
   test('Form should submit correct output', () => {
     const mockSubmit = jest.fn();
-    const { queryByTestId } = render(<InputForm handleData={mockSubmit} />);
+    render(<InputForm handleData={mockSubmit} />);
 
-    fireEvent.change(queryByTestId('select-type'), { target: { value: 'Dataset' } });
-    fireEvent.change(queryByTestId('start-index'), { target: { value: '9' } });
-    fireEvent.change(queryByTestId('limit-index'), { target: { value: '10' } });
-    fireEvent.change(queryByTestId('select-sort-order'), { target: { value: 'asc' } });
-    fireEvent.change(queryByTestId('select-sort-field'), { target: { value: 'Created' } });
-    fireEvent.submit(queryByTestId('form'));
+    fireEvent.change(screen.queryByTestId('select-type'), { target: { value: 'Dataset' } });
+    fireEvent.change(screen.queryByTestId('start-index'), { target: { value: '9' } });
+    fireEvent.change(screen.queryByTestId('limit-index'), { target: { value: '10' } });
+    fireEvent.change(screen.queryByTestId('select-sort-order'), { target: { value: 'asc' } });
+    fireEvent.change(screen.queryByTestId('select-sort-field'), { target: { value: 'Created' } });
+    fireEvent.submit(screen.queryByTestId('form'));
     expect(mockSubmit).toHaveBeenCalled();
     expect(mockSubmit.mock.calls).toEqual([[{
       type: 'Dataset', start: '9', limit: '10', sort_order: 'asc', sort_field: 'Created',
