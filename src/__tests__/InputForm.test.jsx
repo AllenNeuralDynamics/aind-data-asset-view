@@ -89,7 +89,7 @@ describe('test input form', () => {
     userEvent.type(limitIndex, '125');
     expect(limitIndex.value).toBe('125');
   });
-  
+
   test('Form should submit correct output', () => {
     const mockSubmit = jest.fn();
     render(<InputForm handleData={mockSubmit} />);

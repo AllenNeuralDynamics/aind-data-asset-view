@@ -35,7 +35,7 @@ function RenderForm({ userInput }) {
     }
     // eslint-disable-next-line
   }, [userInput]);
-  
+
   if (schema) {
     const displaySchema = schema.map((info) => (
       <tr key={info.id}>
