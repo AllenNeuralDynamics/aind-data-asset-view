@@ -23,12 +23,14 @@ const setup = () => {
 describe('test input form', () => {
 
   test('Render input fields correctly', () => {
-    const { buttonElement, typeSelect, orderSelect, sortFieldSelect } = setup();
+    const { buttonElement, typeSelect, orderSelect, sortFieldSelect, startIndex, limitIndexq } = setup();
 
     expect(buttonElement).toBeInTheDocument();
     expect(typeSelect).toBeInTheDocument();
     expect(orderSelect).toBeInTheDocument();
     expect(sortFieldSelect).toBeInTheDocument();
+    expect(startIndex).toBeInTheDocument();
+    expect(limitIndex).toBeInTheDocument();
   });
 
   test('Should display correct number of data asset type options', () => {
