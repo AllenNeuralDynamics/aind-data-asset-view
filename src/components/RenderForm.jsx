@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
-// import getResponse from '../utilities/getResponse';
 
 function RenderForm({ userInput }) {
   /**
@@ -31,9 +30,8 @@ function RenderForm({ userInput }) {
         const data = await response.json();
         setSchema(data.results);
       };
-      getResponse(url);
+      getReponse();
     }
-    // eslint-disable-next-line
   }, [userInput]);
 
   if (schema) {
