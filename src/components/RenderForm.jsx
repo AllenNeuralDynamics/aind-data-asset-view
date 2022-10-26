@@ -16,17 +16,17 @@ function RenderForm({ userInput }) {
   const handleErrors = (response) => {
     if (!response.ok) {
       throw new Error(response.status);
-    } return response;
+    }
+    return response;
   };
 
   useEffect(() => {
     if (userInput) {
       const url = urlBuilder(urlProxy, userInput);
       const getResponse = async () => {
-        const response = await fetch(url)
-          .catch((error) => {
-            handleErrors(error);
-          });
+        const response = await fetch(url).catch((error) => {
+          handleErrors(error);
+        });
         const data = await response.json();
         setSchema(data.results);
       };
@@ -64,15 +64,11 @@ function RenderForm({ userInput }) {
             <th>Size</th>
           </tr>
         </thead>
-        <tbody>
-          {displaySchema}
-        </tbody>
+        <tbody>{displaySchema}</tbody>
       </table>
     );
   }
-  return (
-    <p />
-  );
+  return <p />;
 }
 
 RenderForm.propTypes = {

@@ -22,19 +22,21 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "lint-fix": "eslint --fix \"src/**/*.{js,jsx}\""
+    "lint-fix": "eslint --fix \"src/**/*.{js,jsx}\"",
+    "format": "prettier --check ./src",
+    "format-fix": "prettier --write ./src"
   },
-  "lint-staged":{
-    "src/**/*.{js,jsx}":[
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
       "eslint --ext .jsx --ext .js ./src --fix"
     ],
-    "./src/**":[
+    "./src/**": [
       "prettier --write ."
     ]
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
   "eslintConfig": {
