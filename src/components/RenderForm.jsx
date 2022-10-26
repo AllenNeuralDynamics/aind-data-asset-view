@@ -30,9 +30,8 @@ function RenderForm({ userInput }) {
         const data = await response.json();
         setSchema(data.results);
       };
-      getResponse(url);
+      getReponse();
     }
-    // eslint-disable-next-line
   }, [userInput]);
 
   if (schema) {
