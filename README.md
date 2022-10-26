@@ -120,6 +120,14 @@ Below is my current Prettier config.
 }
 ```
 
+In the package.json file update 'scripts' to include:
+```
+"format": "prettier --check ./src",
+"format-fix": "prettier --write ./src"
+```
+
+Once the package.json file is updated, you can run `npm run format-fix` to execute and fix code format. After this, run `npm run format` to see that all files have been formatted correctly.
+
 Apply Prettier when files are saved in VSCode:
 
 - Install the Prettier extension

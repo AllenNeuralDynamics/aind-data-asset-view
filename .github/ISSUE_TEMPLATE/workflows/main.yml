@@ -1,0 +1,17 @@
+name: Run linter and tests
+
+on: 
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Run linter and formatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: ESLint
+        run: npm run lint-fix
+      - name: Prettier
+        run: npm run format-fix
