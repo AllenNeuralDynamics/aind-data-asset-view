@@ -15,3 +15,10 @@ jobs:
         run: npm run lint-fix
       - name: Prettier
         run: npm run format-fix
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Unit Tests 
+        run: npm test
