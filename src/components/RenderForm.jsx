@@ -30,7 +30,7 @@ function RenderForm({ userInput }) {
         const data = await response.json();
         setSchema(data.results);
       };
-      getReponse();
+      getResponse();
     }
   }, [userInput]);
 
