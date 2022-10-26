@@ -14,14 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: ESLint
         run: npm ci
+      - name: ESLint
         run: npm run lint-fix
-  test:
-    name: Run tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Unit Tests 
-        run: npm test
         
