@@ -1,4 +1,4 @@
-name: Run linter and tests
+name: CI
 
 on: 
   pull_request:
@@ -17,3 +17,10 @@ jobs:
         run: npm run format-fix
       - name: ESLint
         run: npm run lint-fix
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm test
+      
