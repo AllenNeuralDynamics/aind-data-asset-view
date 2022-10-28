@@ -25,6 +25,9 @@ function RenderForm({ userInput }) {
       const getResponse = async () => {
         const response = await fetch(url)
           .catch((error) => {
+            if (!error.response) {
+              alert('Error: Network Error');
+            }
             handleErrors(error);
           });
         const data = await response.json();
