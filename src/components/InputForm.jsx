@@ -22,15 +22,35 @@ function InputForm({ handleData }) {
         {/* <option value="result">Result</option> */}
         <option defaultValue="dataset">Dataset</option>
       </select>
-      <input name="start" type="number" min="0" max="30" defaultValue="0" data-testid="start-index" />
-      <input name="limit" type="number" min="0" max="200" defaultValue="0" data-testid="limit-index" />
+      <input
+        name="start"
+        type="number"
+        min="0"
+        max="30"
+        defaultValue="0"
+        data-testid="start-index"
+      />
+      <input
+        name="limit"
+        type="number"
+        min="0"
+        max="200"
+        defaultValue="0"
+        data-testid="limit-index"
+      />
       <select name="sort_order" data-testid="select-sort-order">
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
       <select name="sort_field" data-testid="select-sort-field">
         {sortFieldOptions.map((value) => (
-          <option defaultValue={value.toLowerCase()} key={value} data-testid="sort-field-option">{value}</option>
+          <option
+            defaultValue={value.toLowerCase()}
+            key={value}
+            data-testid="sort-field-option"
+          >
+            {value}
+          </option>
         ))}
       </select>
       <button type="submit" data-testid="submit-btn" aria-hidden="true">

@@ -25,8 +25,12 @@ const setup = () => {
 describe('test input form', () => {
   test('Render input fields correctly', () => {
     const {
-      buttonElement, typeSelect, orderSelect,
-      sortFieldSelect, startIndex, limitIndex,
+      buttonElement,
+      typeSelect,
+      orderSelect,
+      sortFieldSelect,
+      startIndex,
+      limitIndex,
     } = setup();
 
     expect(buttonElement).toBeInTheDocument();
@@ -62,7 +66,7 @@ describe('test input form', () => {
 
   test('Show selected sort order on click', async () => {
     const { orderSelect } = setup();
-    fireEvent.change((orderSelect), { target: { value: 'desc' } });
+    fireEvent.change(orderSelect, { target: { value: 'desc' } });
     expect(orderSelect.value).toEqual('desc');
   });
 
@@ -94,15 +98,33 @@ describe('test input form', () => {
     const mockSubmit = jest.fn();
     render(<InputForm handleData={mockSubmit} />);
 
-    fireEvent.change(screen.queryByTestId('select-type'), { target: { value: 'Dataset' } });
-    fireEvent.change(screen.queryByTestId('start-index'), { target: { value: '9' } });
-    fireEvent.change(screen.queryByTestId('limit-index'), { target: { value: '10' } });
-    fireEvent.change(screen.queryByTestId('select-sort-order'), { target: { value: 'asc' } });
-    fireEvent.change(screen.queryByTestId('select-sort-field'), { target: { value: 'Created' } });
+    fireEvent.change(screen.queryByTestId('select-type'), {
+      target: { value: 'Dataset' },
+    });
+    fireEvent.change(screen.queryByTestId('start-index'), {
+      target: { value: '9' },
+    });
+    fireEvent.change(screen.queryByTestId('limit-index'), {
+      target: { value: '10' },
+    });
+    fireEvent.change(screen.queryByTestId('select-sort-order'), {
+      target: { value: 'asc' },
+    });
+    fireEvent.change(screen.queryByTestId('select-sort-field'), {
+      target: { value: 'Created' },
+    });
     fireEvent.submit(screen.queryByTestId('form'));
     expect(mockSubmit).toHaveBeenCalled();
-    expect(mockSubmit.mock.calls).toEqual([[{
-      type: 'Dataset', start: '9', limit: '10', sort_order: 'asc', sort_field: 'Created',
-    }]]);
+    expect(mockSubmit.mock.calls).toEqual([
+      [
+        {
+          type: 'Dataset',
+          start: '9',
+          limit: '10',
+          sort_order: 'asc',
+          sort_field: 'Created',
+        },
+      ],
+    ]);
   });
 });

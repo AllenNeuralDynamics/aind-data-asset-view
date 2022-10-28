@@ -16,7 +16,8 @@ function RenderForm({ userInput }) {
   const handleErrors = (response) => {
     if (!response.ok) {
       throw new Error(response.status);
-    } return response;
+    }
+    return response;
   };
 
   useEffect(() => {
@@ -67,15 +68,11 @@ function RenderForm({ userInput }) {
             <th>Size</th>
           </tr>
         </thead>
-        <tbody>
-          {displaySchema}
-        </tbody>
+        <tbody>{displaySchema}</tbody>
       </table>
     );
   }
-  return (
-    <p />
-  );
+  return <p />;
 }
 
 RenderForm.propTypes = {
