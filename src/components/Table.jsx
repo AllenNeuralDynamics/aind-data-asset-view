@@ -2,7 +2,6 @@ import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 
 function Table({ columns, data }) {
-  // Table component logic and UI go here
   const {
     getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
   } =
