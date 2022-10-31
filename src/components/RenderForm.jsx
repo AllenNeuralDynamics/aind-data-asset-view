@@ -46,12 +46,10 @@ function RenderForm({ userInput }) {
     {
       Header: 'Tags',
       accessor: 'tags',
-      Cell: ({ cell: { value } }) => value || '-',
     },
     {
       Header: 'Type',
       accessor: 'type',
-      Cell: ({ cell: { value } }) => value,
     },
   ]);
 
