@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
 import Table from './Table';
+import '../styles/RenderForm.css';
+import Badges from '../utilities/Badge';
 
 function RenderForm({ userInput }) {
   /**
@@ -14,44 +16,48 @@ function RenderForm({ userInput }) {
 
   const urlProxy = 'http://localhost:8080/data_assets';
 
-  const columns = useMemo(() => [
-    {
-      Header: 'Created',
-      accessor: 'created',
-    },
-    {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      Header: 'Description',
-      accessor: 'description',
-    },
-    {
-      Header: 'Files',
-      accessor: 'files',
-    },
-    {
-      Header: 'ID',
-      accessor: 'id',
-    },
-    {
-      Header: 'Last Used',
-      accessor: 'last_used',
-    },
-    {
-      Header: 'Size',
-      accessor: 'size',
-    },
-    {
-      Header: 'Tags',
-      accessor: 'tags',
-    },
-    {
-      Header: 'Type',
-      accessor: 'type',
-    },
-  ]);
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Created',
+        accessor: 'created',
+      },
+      {
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        Header: 'Description',
+        accessor: 'description',
+      },
+      {
+        Header: 'Files',
+        accessor: 'files',
+      },
+      {
+        Header: 'ID',
+        accessor: 'id',
+      },
+      {
+        Header: 'Last Used',
+        accessor: 'last_used',
+      },
+      {
+        Header: 'Size',
+        accessor: 'size',
+      },
+      {
+        Header: 'Tags',
+        accessor: 'tags',
+        Cell: ({ cell: { value } }) => <Badges values={value} />,
+      },
+      {
+        Header: 'Type',
+        accessor: 'type',
+      },
+    ],
+    [],
+  );
 
   const handleErrors = (response) => {
     if (!response.ok) {

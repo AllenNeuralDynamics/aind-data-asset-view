@@ -9,7 +9,6 @@ function Table({ columns, data }) {
       columns,
       data,
     });
-
   return (
     <table {...getTableProps()}>
       <thead>
@@ -27,7 +26,9 @@ function Table({ columns, data }) {
 
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => <td {...cell.getCellProps()}>{cell.render('Cell')}</td>)}
+              {row.cells.map((cell) => (
+                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              ))}
             </tr>
           );
         })}
