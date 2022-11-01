@@ -104,10 +104,12 @@ function RenderForm({ userInput }) {
 
 RenderForm.propTypes = {
   userInput: PropTypes.shape({}),
+  cell: PropTypes.shape({}),
 };
 
 RenderForm.defaultProps = {
   userInput: undefined,
+  cell: undefined,
 };
 
 export default RenderForm;
