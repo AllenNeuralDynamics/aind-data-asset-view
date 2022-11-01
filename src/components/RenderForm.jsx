@@ -27,20 +27,8 @@ function RenderForm({ userInput }) {
         accessor: 'name',
       },
       {
-        Header: 'Description',
-        accessor: 'description',
-      },
-      {
-        Header: 'Files',
-        accessor: 'files',
-      },
-      {
         Header: 'ID',
         accessor: 'id',
-      },
-      {
-        Header: 'Last Used',
-        accessor: 'last_used',
       },
       {
         Header: 'Size',
@@ -52,8 +40,16 @@ function RenderForm({ userInput }) {
         Cell: ({ cell: { value } }) => <Badges values={value} />,
       },
       {
+        Header: 'Files',
+        accessor: 'files',
+      },
+      {
         Header: 'Type',
         accessor: 'type',
+      },
+      {
+        Header: 'Last Used',
+        accessor: 'last_used',
       },
     ],
     [],
