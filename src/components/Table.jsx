@@ -37,8 +37,8 @@ function Table({ columns, data }) {
 }
 
 Table.propTypes = {
-  columns: PropTypes.func,
-  data: PropTypes.func,
+  columns: PropTypes.instanceOf(Array),
+  data: PropTypes.instanceOf(Array),
 };
 
 Table.defaultProps = {
