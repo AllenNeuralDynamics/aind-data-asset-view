@@ -2,13 +2,13 @@ import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 
 function Table({ columns, data }) {
+  const tableInstance = useTable({ columns, data });
+
   const {
     getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
   } =
-    useTable({
-      columns,
-      data,
-    });
+    tableInstance;
+
   return (
     <table {...getTableProps()}>
       <thead>
@@ -23,7 +23,6 @@ function Table({ columns, data }) {
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
-
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
@@ -38,8 +37,13 @@ function Table({ columns, data }) {
 }
 
 Table.propTypes = {
-  columns: PropTypes.isRequired,
-  data: PropTypes.isRequired,
+  columns: PropTypes.func,
+  data: PropTypes.func,
+};
+
+Table.defaultProps = {
+  columns: undefined,
+  data: undefined,
 };
 
 export default Table;

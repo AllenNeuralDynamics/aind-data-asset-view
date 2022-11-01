@@ -5,6 +5,15 @@ import Table from './Table';
 import '../styles/RenderForm.css';
 import Badges from '../utilities/Badge';
 
+const convertTimestamp = (val) => {
+  const timestamp = new Date(val * 1000);
+  const day = timestamp.getDate();
+  const month = timestamp.getMonth() + 1;
+  const year = timestamp.getFullYear();
+  const createdDate = `${month}/${day}/${year}`;
+  return createdDate;
+};
+
 function RenderForm({ userInput }) {
   /**
    * Perform GET request
@@ -19,8 +28,11 @@ function RenderForm({ userInput }) {
   const columns = useMemo(
     () => [
       {
-        Header: 'Created',
+        Header: 'Created On',
         accessor: 'created',
+        Cell: ({ cell: { value } }) => (
+          <div>{convertTimestamp(value)}</div>
+        ),
       },
       {
         Header: 'Name',
@@ -79,7 +91,7 @@ function RenderForm({ userInput }) {
         getResponse();
       }
     }
-  }, [userInput]);
+  }, [userInput, loadingData]);
 
   if (data) {
     return (
@@ -93,7 +105,9 @@ function RenderForm({ userInput }) {
 RenderForm.propTypes = {
   userInput: PropTypes.shape({}),
 };
+
 RenderForm.defaultProps = {
   userInput: undefined,
 };
+
 export default RenderForm;

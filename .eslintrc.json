@@ -25,7 +25,8 @@
         "linebreak-style": ["error", "unix"],
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "react/jsx-props-no-spreading": ["warn"],
+        "react/no-unstable-nested-components": "off",
+        "react/jsx-props-no-spreading": "off",
         "quotes": [
             "error",
             "single"
