@@ -104,7 +104,9 @@ function RenderForm({ userInput }) {
 
 RenderForm.propTypes = {
   userInput: PropTypes.shape({}),
-  cell: PropTypes.shape({}),
+  cell: PropTypes.shape({
+    value: PropTypes.string,
+  }),
 };
 
 RenderForm.defaultProps = {
