@@ -19,7 +19,7 @@ function InputForm({ handleData }) {
   return (
     <form onSubmit={handleSubmit} data-testid="form">
       <select name="type" defaultValue="" data-testid="select-type">
-        {/* <option value="result">Result</option> */}
+        <option value="result">Result</option>
         <option defaultValue="dataset">Dataset</option>
       </select>
       <input

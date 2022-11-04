@@ -30,9 +30,7 @@ function RenderForm({ userInput }) {
       {
         Header: 'Created On',
         accessor: 'created',
-        Cell: ({ cell: { value } }) => (
-          <div>{convertTimestamp(value)}</div>
-        ),
+        Cell: ({ cell: { value } }) => <div>{convertTimestamp(value)}</div>,
       },
       {
         Header: 'Name',
@@ -62,6 +60,31 @@ function RenderForm({ userInput }) {
       {
         Header: 'Last Used',
         accessor: 'last_used',
+      },
+      {
+        Header: 'Provenance',
+        columns: [
+          {
+            Header: 'Capsule',
+            accessor: 'capsule',
+          },
+          {
+            Header: 'Commit',
+            accessor: 'commit',
+          },
+          {
+            Header: 'Data Assets',
+            accessor: 'data_assets',
+          },
+          {
+            Header: 'Docker Image',
+            accessor: 'docker_image',
+          },
+          {
+            Header: 'Run Script',
+            accessor: 'run_script',
+          },
+        ],
       },
     ],
     [],
