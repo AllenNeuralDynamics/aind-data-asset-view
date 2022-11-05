@@ -66,23 +66,28 @@ function RenderForm({ userInput }) {
         columns: [
           {
             Header: 'Capsule',
-            accessor: 'capsule',
+            accessor: 'provenance.capsule',
+            Cell: ({ cell: { value } }) => value || '-',
           },
           {
             Header: 'Commit',
-            accessor: 'commit',
+            accessor: 'provenance.commit',
+            Cell: ({ cell: { value } }) => value || '-',
           },
           {
             Header: 'Data Assets',
-            accessor: 'data_assets',
+            accessor: 'provenance.data_assets',
+            Cell: ({ cell: { value } }) => value || '-',
           },
           {
             Header: 'Docker Image',
-            accessor: 'docker_image',
+            accessor: 'provenance.docker_image',
+            Cell: ({ cell: { value } }) => value || '-',
           },
           {
             Header: 'Run Script',
-            accessor: 'run_script',
+            accessor: 'provenance.run_script',
+            Cell: ({ cell: { value } }) => value || '-',
           },
         ],
       },
