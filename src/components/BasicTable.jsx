@@ -1,39 +1,28 @@
-import { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import urlBuilder from '../utilities/utils';
+// import { useState, useEffect } from 'react';
+import {
+  Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, Paper,
+} from '@mui/material';
+// import urlBuilder from '../utilities/utils';
 
 function createData(number, item, qty, price) {
-  return { number, item, qty, price };
+  return {
+    number, item, qty, price,
+  };
 }
 
-const rows = [];
+const rows = [
+  createData(1, 'Apple', 5, 3),
+  createData(2, 'Orange', 2, 2),
+  createData(3, 'Grapes', 3, 1),
+  createData(4, 'Tomato', 2, 1.6),
+  createData(5, 'Mango', 1.5, 4),
+];
 
 export default function DynamicTable() {
-
-  const [data, setData] = useState();
-  
-  const urlProxy = 'http://localhost:8080/data_assets';
-  
-  const handleErrors = (response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response;
-  };
-  
-  useEffect(() => {
-    fetch(urlProxy)
-      .catch((error) => {
-      handleErrors(error);
-      });
-      const data = await response.json();
-      setData(data.results);
-    }
-  }, [];
-
   return (
-    <TableContainer>
-      <Table>
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>S.No</TableCell>
@@ -44,7 +33,7 @@ export default function DynamicTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow>
+            <TableRow key={row.number}>
               <TableCell component="th" scope="row">{row.number}</TableCell>
               <TableCell align="right">{row.item}</TableCell>
               <TableCell align="right">{row.qty}</TableCell>
