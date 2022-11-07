@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 // import InputForm from './components/InputForm';
 // import RenderForm from './components/RenderForm';
-import DynamicTable from './components/BasicTable';
+import DynamicTable from './components/DynamicTable';
 
 function App() {
   // const [data, setData] = useState();
