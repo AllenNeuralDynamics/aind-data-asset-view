@@ -30,9 +30,7 @@ function RenderForm({ userInput }) {
       {
         Header: 'Created On',
         accessor: 'created',
-        Cell: ({ cell: { value } }) => (
-          <div>{convertTimestamp(value)}</div>
-        ),
+        Cell: ({ cell: { value } }) => <div>{convertTimestamp(value)}</div>,
       },
       {
         Header: 'Name',
