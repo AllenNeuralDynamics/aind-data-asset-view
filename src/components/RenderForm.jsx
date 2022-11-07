@@ -65,15 +65,11 @@ function RenderForm({ userInput }) {
             <th>Size</th>
           </tr>
         </thead>
-        <tbody>
-          {displaySchema}
-        </tbody>
+        <tbody>{displaySchema}</tbody>
       </table>
     );
   }
-  return (
-    <p />
-  );
+  return <p />;
 }
 
 RenderForm.propTypes = {
