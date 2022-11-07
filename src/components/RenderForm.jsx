@@ -18,24 +18,23 @@ function RenderForm({ userInput }) {
     if (userInput) {
       const url = urlBuilder(urlProxy, userInput);
       const getResponse = async () => {
-        const response = await fetch(url)
-          .catch((error) => {
-            if (!error.response) {
-              setMessage('Network Error: Cannot connect to Code Ocean.');
-            }
-          });
+        const response = await fetch(url).catch((error) => {
+          if (!error.response) {
+            setMessage('Network Error: Cannot connect to Code Ocean.');
+          }
+        });
         const data = await response.json();
         setSchema(data.results);
       };
       getResponse();
+      setMessage(null);
     }
   }, [userInput]);
 
   if (message) {
-    return (
-      <div>{message}</div>
-    );
-  } if (schema) {
+    return <div>{message}</div>;
+  }
+  if (schema) {
     const displaySchema = schema.map((info) => (
       <tr key={info.id}>
         <td>{info.id}</td>
