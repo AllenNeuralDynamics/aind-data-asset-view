@@ -5,8 +5,7 @@ function Table({ columns, data }) {
   const tableInstance = useTable({ columns, data });
 
   const {
-    getTableProps, getTableBodyProps, headerGroups,
-    rows, prepareRow,
+    getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
   } =
     tableInstance;
 
