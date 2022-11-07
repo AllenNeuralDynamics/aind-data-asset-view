@@ -10,14 +10,9 @@ function RenderForm({ userInput }) {
    */
 
   const [schema, setSchema] = useState();
+  const [message, setMessage] = useState(null);
 
   const urlProxy = 'http://localhost:8080/data_assets';
-
-  const handleErrors = (response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    } return response;
-  };
 
   useEffect(() => {
     if (userInput) {
@@ -26,9 +21,8 @@ function RenderForm({ userInput }) {
         const response = await fetch(url)
           .catch((error) => {
             if (!error.response) {
-              alert('Error: Network Error');
+              setMessage('Network Error: Cannot connect to Code Ocean.');
             }
-            handleErrors(error);
           });
         const data = await response.json();
         setSchema(data.results);
@@ -37,7 +31,11 @@ function RenderForm({ userInput }) {
     }
   }, [userInput]);
 
-  if (schema) {
+  if (message) {
+    return (
+      <div>{message}</div>
+    );
+  } if (schema) {
     const displaySchema = schema.map((info) => (
       <tr key={info.id}>
         <td>{info.id}</td>
