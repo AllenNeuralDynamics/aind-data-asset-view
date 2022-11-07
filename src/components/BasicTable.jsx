@@ -5,7 +5,52 @@ import {
 } from '@mui/material';
 // import urlBuilder from '../utilities/utils';
 
-// const rows = [];
+const headers = [
+  {
+    id: 1,
+    name: 'created',
+  },
+  {
+    id: 2,
+    name: 'description',
+  },
+  {
+    id: 3,
+    name: 'files',
+  },
+  {
+    id: 4,
+    name: 'id',
+  },
+  {
+    id: 5,
+    name: 'last_used',
+  },
+  {
+    id: 6,
+    name: 'name',
+  },
+  {
+    id: 7,
+    name: 'size',
+  },
+  {
+    id: 8,
+    name: 'state',
+  },
+  {
+    id: 9,
+    name: 'tags',
+  },
+  {
+    id: 10,
+    name: 'type',
+  },
+  {
+    id: 11,
+    name: 'provenance',
+  },
+];
 
 export default function DynamicTable() {
   const [tableData, setTableData] = useState([]);
@@ -27,30 +72,17 @@ export default function DynamicTable() {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Created On</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Files</TableCell>
-            <TableCell align="right">ID</TableCell>
-            <TableCell align="right">Last Used</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Size</TableCell>
-            <TableCell align="right">Tags</TableCell>
-            <TableCell align="right">Type</TableCell>
+            {headers.map((item) => (
+              <TableCell key={item.id}>{item.name}</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {tableData.map((row) => (
             <TableRow key={row.id}>
-              {/* <TableCell component="th" scope="row">{row.id}</TableCell> */}
-              <TableCell align="right">{row.created}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.files}</TableCell>
-              <TableCell align="right">{row.id}</TableCell>
-              <TableCell align="right">{row.last_used}</TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.size}</TableCell>
-              <TableCell align="right">{row.tags}</TableCell>
-              <TableCell align="right">{row.type}</TableCell>
+              {Object.keys(row).map((key) => (
+                <TableCell>{row[key]}</TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
