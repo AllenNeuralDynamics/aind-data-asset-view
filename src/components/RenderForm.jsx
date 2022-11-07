@@ -21,8 +21,6 @@ function RenderForm({ userInput }) {
    * @return {React.ReactComponentElement} Table header and rows
    */
 
-  const [loadingData, setLoadingData] = useState(true);
-
   const urlProxy = 'http://localhost:8080/data_assets';
 
   const columns = useMemo(
@@ -113,18 +111,15 @@ function RenderForm({ userInput }) {
         });
         const responseData = await response.json();
         setData(responseData.results);
-        setLoadingData(false);
       };
-      if (loadingData) {
-        getResponse();
-      }
+      getResponse();
     }
-  }, [userInput, loadingData]);
+  }, [userInput]);
 
   if (data) {
     return (
       <div>
-        {loadingData ? <p>...</p> : <Table columns={columns} data={data} />}
+        <Table columns={columns} data={data} />
       </div>
     );
   }
