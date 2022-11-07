@@ -43,7 +43,7 @@ describe('test input form', () => {
 
   test('Should display correct number of data asset type options', () => {
     const { typeSelect } = setup();
-    expect(typeSelect.length).toBe(1);
+    expect(typeSelect.length).toBe(2);
   });
 
   test('Should display correct number of sort field options', () => {
