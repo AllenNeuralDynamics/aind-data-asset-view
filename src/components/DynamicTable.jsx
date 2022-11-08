@@ -56,8 +56,8 @@ export default function DynamicTable() {
   const [tableData, setTableData] = useState([]);
 
   const convertTimestamp = (timeValue) => {
-    const dateTimeISO = DateTime.fromSeconds(timeValue).toISO();
-    return dateTimeISO;
+    const formattedDatetime = DateTime.fromSeconds(timeValue).toLocaleString(DateTime.DATETIME_MED);
+    return formattedDatetime;
   };
 
   useEffect(() => {
