@@ -85,9 +85,12 @@ export default function DynamicTable() {
         <TableBody>
           {tableData.map((row) => (
             <TableRow key={row.id}>
-              {Object.keys(row).map((key) => (
-                <TableCell>{row[key]}</TableCell>
-              ))}
+              {Object.keys(row).map((key) => {
+                if (key === 'created') {
+                  return <TableCell>{convertTimestamp(row[key])}</TableCell>;
+                }
+                return <TableCell>{row[key]}</TableCell>;
+              })}
             </TableRow>
           ))}
         </TableBody>
