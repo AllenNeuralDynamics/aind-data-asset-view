@@ -84,13 +84,8 @@ export default function DynamicTable() {
         </TableHead>
         <TableBody>
           {tableData.map((row) => (
-            // console.log(row)
             <TableRow key={row.id}>
               {Object.keys(row).map((key) => (
-                // console.log(key, row[key])
-                // if (key === "created") {
-                //   <TableCell>{convertTimestamp(row[key])}</TableCell>
-                // }
                 <TableCell>{row[key]}</TableCell>
               ))}
             </TableRow>
