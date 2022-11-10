@@ -37,6 +37,11 @@ describe('test input form', () => {
     expect(limitIndex).toBeInTheDocument();
   });
 
+  test('Should display correct number of data asset type options', () => {
+    const { typeSelect } = setup();
+    expect(typeSelect.length).toBe(3);
+  });
+
   test('Should display correct number of sort field options', () => {
     const { sortFieldSelect } = setup();
     expect(sortFieldSelect.length).toBe(4);

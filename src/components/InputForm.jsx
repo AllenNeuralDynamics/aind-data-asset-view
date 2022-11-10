@@ -18,6 +18,11 @@ function InputForm({ handleData }) {
 
   return (
     <form onSubmit={handleSubmit} data-testid="form">
+      <select name="type" defaultValue="" data-testid="select-type">
+        <option value="result">Result</option>
+        <option defaultValue="dataset">Dataset</option>
+        <option defaultValue="">Both</option>
+      </select>
       <input
         name="start"
         type="number"
