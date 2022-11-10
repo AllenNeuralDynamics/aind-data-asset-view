@@ -1,5 +1,7 @@
 import { useTable } from 'react-table';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+import '../styles/Table.css';
 
 function Table({ columns, data }) {
   const tableInstance = useTable({ columns, data });
@@ -13,9 +15,9 @@ function Table({ columns, data }) {
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr key={uuidv4()} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th key={uuidv4()} {...column.getHeaderProps()}>{column.render('Header')}</th>
             ))}
           </tr>
         ))}
@@ -24,9 +26,9 @@ function Table({ columns, data }) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <tr key={uuidv4()} {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                <td key={uuidv4()} {...cell.getCellProps()}>{cell.render('Cell')}</td>
               ))}
             </tr>
           );

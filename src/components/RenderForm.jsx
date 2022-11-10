@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
 import Table from './Table';
@@ -28,7 +29,7 @@ function RenderForm({ userInput }) {
       {
         Header: 'Created On',
         accessor: 'created',
-        Cell: ({ cell: { value } }) => <div>{convertTimestamp(value)}</div>,
+        Cell: ({ cell: { value } }) => <div key={uuidv4()}>{convertTimestamp(value)}</div>,
       },
       {
         Header: 'Name',
@@ -45,6 +46,7 @@ function RenderForm({ userInput }) {
       {
         Header: 'Tags',
         accessor: 'tags',
+        // Cell: ({ cell: { value } }) => <div>{value}</div>,
         Cell: ({ cell: { value } }) => <Badges values={value} />,
       },
       {

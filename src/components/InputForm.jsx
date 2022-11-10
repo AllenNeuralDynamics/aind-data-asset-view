@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 const sortFieldOptions = ['Created', 'Type', 'Name', 'Size'];
 
@@ -47,7 +48,7 @@ function InputForm({ handleData }) {
         {sortFieldOptions.map((value) => (
           <option
             defaultValue={value.toLowerCase()}
-            key={value}
+            key={uuidv4()}
             data-testid="sort-field-option"
           >
             {value}
