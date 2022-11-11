@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
-import clone from 'just-clone';
+// import clone from 'just-clone';
 import urlBuilder from '../utilities/utils';
 import Table from './Table';
 import '../styles/RenderForm.css';
@@ -30,7 +30,7 @@ function RenderForm({ userInput }) {
         Header: 'Created On',
         accessor: 'created',
         Cell: ({ cell: { value } }) => (
-          <div key={uuidv4()}>{convertTimestamp(value)}</div>
+          <div>{convertTimestamp(value)}</div>
         ),
       },
       {
@@ -114,8 +114,19 @@ function RenderForm({ userInput }) {
           handleErrors(error);
         });
         const responseData = await response.json();
-        const responseDeepCopy = clone(responseData.results);
-        setData(responseDeepCopy);
+        const metadata = responseData.results;
+        const metadataUUID = metadata.map((item) => ({ ...item, uuid: uuidv4() }));
+        // console.log(metadata.map(function(item){item.uuid = uuidv4()}));
+        // console.log(metadata.map((item) => ({ ...item, uuid: uuidv4() })));
+        // console.log(metadata.map((item) => ({ ...item }, item.uuid = uuidv4())));
+        // const results = metadata.forEach((item) => ({ [item.uuid]: uuidv4() }));
+        setData(metadataUUID);
+        // console.log(metadataUUID);
+        // console.log(results);
+        // setData(results);
+        // setData(responseData.results.forEach((item) => ({ [item.uuid]: uuidv4() })));
+        // const responseDeepCopy = clone(responseData.results);
+        // setData(responseDeepCopy);
       };
       getResponse();
     }
