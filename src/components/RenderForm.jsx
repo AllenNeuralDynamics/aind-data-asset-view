@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+import clone from 'just-clone';
 import urlBuilder from '../utilities/utils';
 import Table from './Table';
 import '../styles/RenderForm.css';
@@ -21,7 +22,6 @@ function RenderForm({ userInput }) {
    * Render response from GET request
    * @return {React.ReactComponentElement} Table header and rows
    */
-
   const urlProxy = 'http://localhost:8080/data_assets';
 
   const columns = useMemo(
@@ -29,7 +29,9 @@ function RenderForm({ userInput }) {
       {
         Header: 'Created On',
         accessor: 'created',
-        Cell: ({ cell: { value } }) => <div key={uuidv4()}>{convertTimestamp(value)}</div>,
+        Cell: ({ cell: { value } }) => (
+          <div key={uuidv4()}>{convertTimestamp(value)}</div>
+        ),
       },
       {
         Header: 'Name',
@@ -112,7 +114,8 @@ function RenderForm({ userInput }) {
           handleErrors(error);
         });
         const responseData = await response.json();
-        setData(responseData.results);
+        const responseDeepCopy = clone(responseData.results);
+        setData(responseDeepCopy);
       };
       getResponse();
     }

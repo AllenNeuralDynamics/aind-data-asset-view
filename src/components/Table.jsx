@@ -17,7 +17,9 @@ function Table({ columns, data }) {
         {headerGroups.map((headerGroup) => (
           <tr key={uuidv4()} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th key={uuidv4()} {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th key={uuidv4()} {...column.getHeaderProps()}>
+                {column.render('Header')}
+              </th>
             ))}
           </tr>
         ))}
@@ -28,7 +30,9 @@ function Table({ columns, data }) {
           return (
             <tr key={uuidv4()} {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td key={uuidv4()} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                <td key={uuidv4()} {...cell.getCellProps()}>
+                  {cell.render('Cell')}
+                </td>
               ))}
             </tr>
           );
