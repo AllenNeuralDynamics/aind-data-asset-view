@@ -5,6 +5,7 @@ import InputForm from '../components/InputForm';
 
 const setup = () => {
   render(<InputForm />);
+  const typeSelect = screen.getByTestId('select-type');
   const buttonElement = screen.getByTestId('submit-btn');
   const orderSelect = screen.getByTestId('select-sort-order');
   const sortFieldSelect = screen.getByTestId('select-sort-field');
@@ -12,6 +13,7 @@ const setup = () => {
   const limitIndex = screen.getByTestId('limit-index');
 
   return {
+    typeSelect,
     buttonElement,
     orderSelect,
     sortFieldSelect,
@@ -23,6 +25,7 @@ const setup = () => {
 describe('test input form', () => {
   test('Render input fields correctly', () => {
     const {
+      typeSelect,
       buttonElement,
       orderSelect,
       sortFieldSelect,
@@ -30,6 +33,7 @@ describe('test input form', () => {
       limitIndex,
     } = setup();
 
+    expect(typeSelect).toBeInTheDocument();
     expect(buttonElement).toBeInTheDocument();
     expect(orderSelect).toBeInTheDocument();
     expect(sortFieldSelect).toBeInTheDocument();
@@ -94,6 +98,9 @@ describe('test input form', () => {
     const mockSubmit = jest.fn();
     render(<InputForm handleData={mockSubmit} />);
 
+    fireEvent.change(screen.queryByTestId('select-type'), {
+      target: { value: 'Dataset' },
+    });
     fireEvent.change(screen.queryByTestId('start-index'), {
       target: { value: '9' },
     });
@@ -111,6 +118,7 @@ describe('test input form', () => {
     expect(mockSubmit.mock.calls).toEqual([
       [
         {
+          type: 'Dataset',
           start: '9',
           limit: '10',
           sort_order: 'asc',
