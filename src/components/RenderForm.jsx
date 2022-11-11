@@ -106,12 +106,16 @@ function RenderForm({ userInput }) {
 
   const [data, setData] = useState();
 
+  const [message, setMessage] = useState(null);
+
   useEffect(() => {
     if (userInput) {
       const url = urlBuilder(urlProxy, userInput);
       const getResponse = async () => {
         const response = await fetch(url).catch((error) => {
-          handleErrors(error);
+          if (!error.response) {
+            setMessage('Network Error: Cannot connect to Code Ocean.');
+          }
         });
         const responseData = await response.json();
         const metadata = responseData.results;
@@ -129,10 +133,15 @@ function RenderForm({ userInput }) {
         // setData(responseDeepCopy);
       };
       getResponse();
+      setMessage(null);
     }
   }, [userInput]);
 
+  if (message) {
+    return <div>{message}</div>;
+  }
   if (data) {
+
     return (
       <div>
         <Table columns={columns} data={data} />
