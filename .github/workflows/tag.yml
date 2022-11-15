@@ -9,7 +9,6 @@ jobs:
   run-build-if-needed:
     runs-on: ubuntu-latest
     steps:
-      id: version-updated
       with:
         path: package.json
       env:
