@@ -9,11 +9,27 @@ jobs:
   version:
     name: Check for Version Bump
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v3
-      - name: Package JSON Version Check
+    steps:
+    - uses: MontyD/package-json-updated-action
+      id: version-updated
+      with:
+        path: package.json
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v3
+      if: steps.version-updated.outputs.has-updated
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v3
+      if: steps.version-updated.outputs.has-updated
+      with:
+        node-version: '12.x'
+    - run: npm install
+      if: steps.version-updated.outputs.has-updated
+    - run: npm run build
+      if: steps.version-updated.outputs.has-updated
       - uses: gfellerph/package-json-version-check@v1.0.0-alpha.2
-
+  bump:
       - name: Bump Version
       - uses: remorses/bump-version@v8
         with: 
