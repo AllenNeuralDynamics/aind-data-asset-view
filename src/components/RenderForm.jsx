@@ -14,10 +14,10 @@ const convertTimestamp = (val) => {
 
 function RenderForm({ userInput }) {
   /**
-  * Perform GET request
-  * Render response from GET request
-  * @return {React.ReactComponentElement} Table header and rows
-  */
+   * Perform GET request
+   * Render response from GET request
+   * @return {React.ReactComponentElement} Table header and rows
+   */
   const urlProxy = 'http://localhost:8080/data_assets';
 
   const [data, setData] = useState();
