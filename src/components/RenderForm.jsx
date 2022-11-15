@@ -1,108 +1,24 @@
-import { useState, useEffect, useMemo } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import clone from 'just-clone';
 import urlBuilder from '../utilities/utils';
-import Table from './Table';
 import '../styles/RenderForm.css';
-import Badges from '../utilities/Badge';
 
 const convertTimestamp = (val) => {
   const timestamp = new Date(val * 1000);
   const day = timestamp.getDate();
   const month = timestamp.getMonth() + 1;
   const year = timestamp.getFullYear();
-  const createdDate = `${month}/${day}/${year}`;
+  const createdDate = `${year}-${month}-${day}`;
   return createdDate;
 };
 
 function RenderForm({ userInput }) {
   /**
-   * Perform GET request
-   * Render response from GET request
-   * @return {React.ReactComponentElement} Table header and rows
-   */
+  * Perform GET request
+  * Render response from GET request
+  * @return {React.ReactComponentElement} Table header and rows
+  */
   const urlProxy = 'http://localhost:8080/data_assets';
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Created On',
-        accessor: 'created',
-        Cell: ({ cell: { value } }) => (
-          <div>{convertTimestamp(value)}</div>
-        ),
-      },
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'ID',
-        accessor: 'id',
-      },
-      {
-        Header: 'Size',
-        accessor: 'size',
-      },
-      {
-        Header: 'Tags',
-        accessor: 'tags',
-        // Cell: ({ cell: { value } }) => <div>{value}</div>,
-        Cell: ({ cell: { value } }) => <Badges values={value} />,
-      },
-      {
-        Header: 'Files',
-        accessor: 'files',
-      },
-      {
-        Header: 'Type',
-        accessor: 'type',
-      },
-      {
-        Header: 'Last Used',
-        accessor: 'last_used',
-      },
-      {
-        Header: 'Provenance',
-        columns: [
-          {
-            Header: 'Capsule',
-            accessor: 'provenance.capsule',
-            Cell: ({ cell: { value } }) => value || '-',
-          },
-          {
-            Header: 'Commit',
-            accessor: 'provenance.commit',
-            Cell: ({ cell: { value } }) => value || '-',
-          },
-          {
-            Header: 'Data Assets',
-            accessor: 'provenance.data_assets',
-            Cell: ({ cell: { value } }) => value || '-',
-          },
-          {
-            Header: 'Docker Image',
-            accessor: 'provenance.docker_image',
-            Cell: ({ cell: { value } }) => value || '-',
-          },
-          {
-            Header: 'Run Script',
-            accessor: 'provenance.run_script',
-            Cell: ({ cell: { value } }) => value || '-',
-          },
-        ],
-      },
-    ],
-    [],
-  );
-
-  const handleErrors = (response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response;
-  };
 
   const [data, setData] = useState();
 
@@ -118,19 +34,7 @@ function RenderForm({ userInput }) {
           }
         });
         const responseData = await response.json();
-        const metadata = responseData.results;
-        const metadataUUID = metadata.map((item) => ({ ...item, uuid: uuidv4() }));
-        // console.log(metadata.map(function(item){item.uuid = uuidv4()}));
-        // console.log(metadata.map((item) => ({ ...item, uuid: uuidv4() })));
-        // console.log(metadata.map((item) => ({ ...item }, item.uuid = uuidv4())));
-        // const results = metadata.forEach((item) => ({ [item.uuid]: uuidv4() }));
-        setData(metadataUUID);
-        // console.log(metadataUUID);
-        // console.log(results);
-        // setData(results);
-        // setData(responseData.results.forEach((item) => ({ [item.uuid]: uuidv4() })));
-        // const responseDeepCopy = clone(responseData.results);
-        // setData(responseDeepCopy);
+        setData(responseData);
       };
       getResponse();
       setMessage(null);
@@ -141,10 +45,41 @@ function RenderForm({ userInput }) {
     return <div>{message}</div>;
   }
   if (data) {
-
+    const tableBody = data.results.map((info) => (
+      <tr key={info.id}>
+        <td>{info.type}</td>
+        <td>{convertTimestamp(info.created)}</td>
+        <td>{info.name}</td>
+        <td>{info.id}</td>
+        <td>{info.description}</td>
+        <td>{info.files}</td>
+        <td>{info.last_used}</td>
+        <td>{info.size}</td>
+        <td>{info.state}</td>
+        <td>{`${JSON.stringify(info.tags)}`}</td>
+        <td>{info.provenance ? `${JSON.stringify(info.provenance)}` : null}</td>
+      </tr>
+    ));
     return (
       <div>
-        <Table columns={columns} data={data} />
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Created</th>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Files</th>
+              <th>Last Used</th>
+              <th>Size</th>
+              <th>State</th>
+              <th>Tags</th>
+              <th>Provenance</th>
+            </tr>
+          </thead>
+          <tbody>{tableBody}</tbody>
+        </table>
       </div>
     );
   }
@@ -152,14 +87,10 @@ function RenderForm({ userInput }) {
 
 RenderForm.propTypes = {
   userInput: PropTypes.shape({}),
-  cell: PropTypes.shape({
-    value: PropTypes.string,
-  }),
 };
 
 RenderForm.defaultProps = {
   userInput: undefined,
-  cell: undefined,
 };
 
 export default RenderForm;
