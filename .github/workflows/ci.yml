@@ -35,7 +35,7 @@ jobs:
           minor_bump=0 && [[ $version_in_this_pr_major == $latest_tag_major && $version_in_this_pr_minor == $ltmn_po && $version_in_this_pr_patch == 0 ]]  && minor_bump=1
           patch_bump=0 && [[ $version_in_this_pr_major == $latest_tag_major && $version_in_this_pr_minor == $latest_tag_minor && $version_in_this_pr_patch == $ltp_po ]]  && patch_bump=1
           echo "Major bump: $major_bump, Minor bump: $minor_bump, Patch bump: $patch_bump"
-          [[ $major_bump == 0 && $minor_bump == 0 && $patch_bump == 0 ]] && { echo "ERROR: Version needs to be bumped in $init_file" ; exit 1 ; }
+          [[ $major_bump == 0 && $minor_bump == 0 && $patch_bump == 0 ]] && { echo "ERROR: Version needs to be bumped in $pkg_name" ; exit 1 ; }
           echo "Version is bumped"
       - name: Install packages
         run: npm ci
