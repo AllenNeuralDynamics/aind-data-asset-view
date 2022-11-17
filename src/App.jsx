@@ -1,9 +1,9 @@
-import DynamicTable from './components/DynamicTable';
+import DataGrid from './components/DataGrid';
 
 function App() {
   return (
     <div>
-      <DynamicTable />
+      <DataGrid />
     </div>
   );
 }
