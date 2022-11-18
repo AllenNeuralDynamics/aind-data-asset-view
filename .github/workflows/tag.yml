@@ -1,0 +1,27 @@
+name: Set tag to version
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Extract version from file
+        id: getversion
+        run: |
+          pkg_name="package.json"
+          current_version=$(cat $pkg_name | grep '"version": "')
+          [[ $current_version =~ ([0-9]+).([0-9]+).([0-9]+) ]]
+          version_in_this_pr_patch=${BASH_REMATCH[3]}
+          version_in_this_pr_minor=${BASH_REMATCH[2]}
+          version_in_this_pr_major=${BASH_REMATCH[1]}
+          new_tag=$version_in_this_pr_major.$version_in_this_pr_minor.$version_in_this_pr_patch
+          echo "::set-output name=version::$new_tag"
+      - name: Bump tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ steps.getversion.outputs.version }}

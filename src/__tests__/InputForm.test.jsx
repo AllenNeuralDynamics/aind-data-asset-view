@@ -5,16 +5,16 @@ import InputForm from '../components/InputForm';
 
 const setup = () => {
   render(<InputForm />);
-  const buttonElement = screen.getByTestId('submit-btn');
   const typeSelect = screen.getByTestId('select-type');
+  const buttonElement = screen.getByTestId('submit-btn');
   const orderSelect = screen.getByTestId('select-sort-order');
   const sortFieldSelect = screen.getByTestId('select-sort-field');
   const startIndex = screen.getByTestId('start-index');
   const limitIndex = screen.getByTestId('limit-index');
 
   return {
-    buttonElement,
     typeSelect,
+    buttonElement,
     orderSelect,
     sortFieldSelect,
     startIndex,
@@ -25,16 +25,16 @@ const setup = () => {
 describe('test input form', () => {
   test('Render input fields correctly', () => {
     const {
-      buttonElement,
       typeSelect,
+      buttonElement,
       orderSelect,
       sortFieldSelect,
       startIndex,
       limitIndex,
     } = setup();
 
-    expect(buttonElement).toBeInTheDocument();
     expect(typeSelect).toBeInTheDocument();
+    expect(buttonElement).toBeInTheDocument();
     expect(orderSelect).toBeInTheDocument();
     expect(sortFieldSelect).toBeInTheDocument();
     expect(startIndex).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('test input form', () => {
 
   test('Should display correct number of data asset type options', () => {
     const { typeSelect } = setup();
-    expect(typeSelect.length).toBe(1);
+    expect(typeSelect.length).toBe(3);
   });
 
   test('Should display correct number of sort field options', () => {
