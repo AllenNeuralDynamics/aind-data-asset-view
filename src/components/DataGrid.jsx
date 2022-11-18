@@ -14,6 +14,7 @@ const columns = [
     field: 'created',
     headerName: 'Date',
     valueFormatter: (params) => convertTimestamp(params?.value),
+    minWidth: 200,
   },
   {
     field: 'description',
@@ -26,6 +27,7 @@ const columns = [
   {
     field: 'id',
     headerName: 'ID',
+    minWidth: 325,
   },
   {
     field: 'last_used',
@@ -36,15 +38,17 @@ const columns = [
       }
       return '';
     },
-    // valueFormatter: (params) => convertTimestamp(params.value),
+    minWidth: 200,
   },
   {
     field: 'name',
     headerName: 'Name',
+    minWidth: 400,
   },
   {
     field: 'size',
     headerName: 'Size',
+    minWidth: 150,
   },
   {
     field: 'state',
@@ -53,6 +57,7 @@ const columns = [
   {
     field: 'tags',
     headerName: 'Tags',
+    minWidth: 200,
   },
   {
     field: 'type',
@@ -71,9 +76,10 @@ export default function DynamicTable() {
 
   return (
     <div style={{ height: 700, width: '100%' }}>
-      <DataGrid 
-        rows={tableData} 
-        columns={columns} pageSize={10} 
+      <DataGrid
+        rows={tableData}
+        columns={columns}
+        pageSize={10}
       />
     </div>
   );
