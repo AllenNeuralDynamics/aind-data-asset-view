@@ -5,7 +5,9 @@ import '../styles/Table.css';
 function Table({ columns, data }) {
   const tableInstance = useTable({ columns, data });
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+  const {
+    getTableProps, getTableBodyProps, headerGroups, rows, prepareRow,
+  } =
     tableInstance;
 
   return (

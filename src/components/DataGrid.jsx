@@ -63,13 +63,90 @@ const columns = [
     field: 'type',
     headerName: 'Type',
   },
+  {
+    field: 'capsule',
+    headerName: 'Capsule',
+    minWidth: 300,
+    valueGetter: (params) => {
+      if (params.row.provenance) {
+        return params.row.provenance.capsule;
+      }
+      return '';
+    },
+  },
+  {
+    field: 'commit',
+    headerName: 'Commit',
+    minWidth: 300,
+    valueGetter: (params) => {
+      if (params.row.provenance) {
+        return params.row.provenance.commit;
+      }
+      return '';
+    },
+  },
+  {
+    field: 'data_assets',
+    headerName: 'Data Assets',
+    minWidth: 300,
+    valueGetter: (params) => {
+      if (params.row.provenance) {
+        return params.row.provenance.data_assets;
+      }
+      return '';
+    },
+  },
+  {
+    field: 'docker_image',
+    headerName: 'Docker Image',
+    minWidth: 300,
+    valueGetter: (params) => {
+      if (params.row.provenance) {
+        return params.row.provenance.docker_image;
+      }
+      return '';
+    },
+  },
+  {
+    field: 'run_script',
+    headerName: 'run Script',
+    minWidth: 300,
+    valueGetter: (params) => {
+      if (params.row.provenance) {
+        return params.row.provenance.run_script;
+      }
+      return '';
+    },
+  },
 ];
+
+// const flattenObject = (obj) => {
+//   const flattened = {};
+
+//   Object.keys(obj).forEach((key) => {
+//     const val = obj[key];
+//     if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+//       Object.assign(flattened, flattenObject(val));
+//     } else {
+//       flattened[key] = val;
+//     }
+//   });
+//   return flattened;
+// };
+// const flattenData = (res) => {
+//   Object.entries(res).forEach((entry) => {
+//     const [key, value] = entry;
+//     console.log(`${key}: ${value}`);
+//   });
+// };
+// const test = flattenData(tableData);
+// console.log(test);
 
 export default function DynamicTable() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/data_assets?type=dataset')
+    fetch('http://localhost:8080/data_assets?limit=80')
       .then((data) => data.json())
       .then((data) => setTableData(data.results));
   }, []);
@@ -79,7 +156,7 @@ export default function DynamicTable() {
       <DataGrid
         rows={tableData}
         columns={columns}
-        pageSize={10}
+        pageSize={50}
       />
     </div>
   );
