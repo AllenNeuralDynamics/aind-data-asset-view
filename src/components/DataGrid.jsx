@@ -71,7 +71,6 @@ const columns = [
       if (params.row.provenance) {
         return params.row.provenance.capsule;
       }
-      return '';
     },
   },
   {
@@ -120,33 +119,11 @@ const columns = [
   },
 ];
 
-// const flattenObject = (obj) => {
-//   const flattened = {};
-
-//   Object.keys(obj).forEach((key) => {
-//     const val = obj[key];
-//     if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
-//       Object.assign(flattened, flattenObject(val));
-//     } else {
-//       flattened[key] = val;
-//     }
-//   });
-//   return flattened;
-// };
-// const flattenData = (res) => {
-//   Object.entries(res).forEach((entry) => {
-//     const [key, value] = entry;
-//     console.log(`${key}: ${value}`);
-//   });
-// };
-// const test = flattenData(tableData);
-// console.log(test);
-
 export default function DynamicTable() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/data_assets?limit=80')
+    fetch('http://localhost:8080/data_assets?&limit=80')
       .then((data) => data.json())
       .then((data) => setTableData(data.results));
   }, []);
