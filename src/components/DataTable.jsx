@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from 'luxon';
 
@@ -120,37 +120,20 @@ const columns = [
   },
 ];
 
-export default function DataTable() {
-  const [tableData, setTableData] = useState([]);
-  const [message, setMessage] = useState(null);
-
-  useEffect(() => {
-    const getResponse = async () => {
-      const response = await fetch('http://localhost:8080/data_assets?&limit=80').catch((error) => {
-        if (!error.response) {
-          setMessage('Network Error: Cannot connect to Code Ocean.');
-        }
-      });
-      const responseData = await response.json();
-      setTableData(responseData.results);
-    };
-    getResponse();
-    setMessage(null);
-  }, []);
-
-  if (message) {
-    return <div>{message}</div>;
-  }
-
-  if (tableData) {
-    return (
-      <div style={{ height: 700, width: '100%' }} data-testid="data-grid-table">
-        <DataGrid
-          rows={tableData}
-          columns={columns}
-          pageSize={50}
-        />
-      </div>
-    );
-  }
+function DataTable({ rows }) {
+  return (
+    <div style={{ height: 700, width: '100%' }}>
+      <DataGrid rows={rows} columns={columns} pageSize={50} />
+    </div>
+  );
 }
+
+DataTable.propTypes = {
+  rows: PropTypes.shape([]),
+};
+
+DataTable.defaultProps = {
+  rows: undefined,
+};
+
+export default DataTable;

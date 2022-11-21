@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 
-const sortFieldOptions = ['Created', 'Type', 'Name', 'Size'];
-
 function InputForm({ handleData }) {
   /**
    * Function to read user input from form submit, update state, and pass to parent component.
@@ -22,37 +20,6 @@ function InputForm({ handleData }) {
         <option value="result">Result</option>
         <option defaultValue="dataset">Dataset</option>
         <option defaultValue="">Both</option>
-      </select>
-      <input
-        name="start"
-        type="number"
-        min="0"
-        max="30"
-        defaultValue="0"
-        data-testid="start-index"
-      />
-      <input
-        name="limit"
-        type="number"
-        min="0"
-        max="200"
-        defaultValue="0"
-        data-testid="limit-index"
-      />
-      <select name="sort_order" data-testid="select-sort-order">
-        <option value="asc">Ascending</option>
-        <option value="desc">Descending</option>
-      </select>
-      <select name="sort_field" data-testid="select-sort-field">
-        {sortFieldOptions.map((value) => (
-          <option
-            defaultValue={value.toLowerCase()}
-            key={value}
-            data-testid="sort-field-option"
-          >
-            {value}
-          </option>
-        ))}
       </select>
       <button type="submit" data-testid="submit-btn" aria-hidden="true">
         Submit

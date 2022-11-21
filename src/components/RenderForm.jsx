@@ -2,15 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
 import '../styles/RenderForm.css';
-
-const convertTimestamp = (val) => {
-  const timestamp = new Date(val * 1000);
-  const day = timestamp.getDate();
-  const month = timestamp.getMonth() + 1;
-  const year = timestamp.getFullYear();
-  const createdDate = `${year}-${month}-${day}`;
-  return createdDate;
-};
+import DataTable from './DataTable';
 
 function RenderForm({ userInput }) {
   /**
@@ -20,8 +12,7 @@ function RenderForm({ userInput }) {
    */
   const urlProxy = 'http://localhost:8080/data_assets';
 
-  const [data, setData] = useState();
-
+  const [tableData, setTableData] = useState();
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -34,7 +25,7 @@ function RenderForm({ userInput }) {
           }
         });
         const responseData = await response.json();
-        setData(responseData);
+        setTableData(responseData.results);
       };
       getResponse();
       setMessage(null);
@@ -44,42 +35,10 @@ function RenderForm({ userInput }) {
   if (message) {
     return <div>{message}</div>;
   }
-  if (data) {
-    const tableBody = data.results.map((info) => (
-      <tr key={info.id}>
-        <td>{info.type}</td>
-        <td>{convertTimestamp(info.created)}</td>
-        <td>{info.name}</td>
-        <td>{info.id}</td>
-        <td>{info.description}</td>
-        <td>{info.files}</td>
-        <td>{info.last_used}</td>
-        <td>{info.size}</td>
-        <td>{info.state}</td>
-        <td>{`${JSON.stringify(info.tags)}`}</td>
-        <td>{info.provenance ? `${JSON.stringify(info.provenance)}` : null}</td>
-      </tr>
-    ));
+  if (tableData) {
     return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Created</th>
-              <th>Name</th>
-              <th>ID</th>
-              <th>Description</th>
-              <th>Files</th>
-              <th>Last Used</th>
-              <th>Size</th>
-              <th>State</th>
-              <th>Tags</th>
-              <th>Provenance</th>
-            </tr>
-          </thead>
-          <tbody>{tableBody}</tbody>
-        </table>
+        <DataTable rows={tableData} />
       </div>
     );
   }
