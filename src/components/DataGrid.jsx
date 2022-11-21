@@ -122,20 +122,32 @@ const columns = [
 
 export default function DynamicTable() {
   const [tableData, setTableData] = useState([]);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:8080/data_assets?&limit=80')
       .then((data) => data.json())
-      .then((data) => setTableData(data.results));
+      .then((data) => setTableData(data.results))
+      .catch((error) => {
+        if (!error.response) {
+          setMessage('Network Error: Cannot connect to Code Ocean.');
+        }
+      });
   }, []);
 
-  return (
-    <div style={{ height: 700, width: '100%' }}>
-      <DataGrid
-        rows={tableData}
-        columns={columns}
-        pageSize={50}
-      />
-    </div>
-  );
+  if (message) {
+    return <div>{message}</div>;
+  }
+
+  if (tableData) {
+    return (
+      <div style={{ height: 700, width: '100%' }}>
+        <DataGrid
+          rows={tableData}
+          columns={columns}
+          pageSize={50}
+        />
+      </div>
+    );
+  }
 }
