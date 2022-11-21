@@ -120,7 +120,7 @@ const columns = [
   },
 ];
 
-export default function DynamicTable() {
+export default function DataTable() {
   const [tableData, setTableData] = useState([]);
   const [message, setMessage] = useState(null);
 
@@ -135,6 +135,7 @@ export default function DynamicTable() {
       setTableData(responseData.results);
     };
     getResponse();
+    setMessage(null);
   }, []);
 
   if (message) {
@@ -143,7 +144,7 @@ export default function DynamicTable() {
 
   if (tableData) {
     return (
-      <div style={{ height: 700, width: '100%' }}>
+      <div style={{ height: 700, width: '100%' }} data-testid="data-grid-table">
         <DataGrid
           rows={tableData}
           columns={columns}
