@@ -71,6 +71,7 @@ const columns = [
       if (params.row.provenance) {
         return params.row.provenance.capsule;
       }
+      return '';
     },
   },
   {
