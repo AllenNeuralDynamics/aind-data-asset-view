@@ -125,14 +125,16 @@ export default function DynamicTable() {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8080/data_assets?&limit=80')
-      .then((data) => data.json())
-      .then((data) => setTableData(data.results))
-      .catch((error) => {
+    const getResponse = async () => {
+      const response = await fetch('http://localhost:8080/data_assets?&limit=80').catch((error) => {
         if (!error.response) {
           setMessage('Network Error: Cannot connect to Code Ocean.');
         }
       });
+      const responseData = await response.json();
+      setTableData(responseData.results);
+    };
+    getResponse();
   }, []);
 
   if (message) {
