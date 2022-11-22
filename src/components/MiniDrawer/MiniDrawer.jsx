@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -89,7 +88,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer({ title }) {
   const theme = useTheme();
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -129,7 +127,7 @@ export default function MiniDrawer({ title }) {
         <Divider />
         <List>
           {drawerItems.map((item) => (
-            <ListItem key={item.id} disablePadding sx={{ display: 'block' }} onClick={() => navigate(item.route)}>
+            <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
