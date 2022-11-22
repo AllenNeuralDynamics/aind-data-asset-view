@@ -15,10 +15,7 @@ const setup = () => {
 
 describe('test input form', () => {
   test('Render input fields correctly', () => {
-    const {
-      typeSelect,
-      buttonElement,
-    } = setup();
+    const { typeSelect, buttonElement } = setup();
 
     expect(typeSelect).toBeInTheDocument();
     expect(buttonElement).toBeInTheDocument();
