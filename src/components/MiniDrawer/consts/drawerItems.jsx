@@ -6,7 +6,7 @@ const drawerItems = [
     id: 0,
     icon: <DatasetIcon />,
     label: 'Data Asset View',
-    route: '/',
+    route: 'data-asset',
   },
   {
     id: 1,

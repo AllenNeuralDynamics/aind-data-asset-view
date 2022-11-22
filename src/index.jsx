@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import Pipeline from './pages/Pipeline';
 import dashboardTheme from './dashboardTheme';
+import DataAsset from './pages/DataAsset';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
+          <Route path="data-asset" element={<DataAsset />} />
           <Route path="pipeline-run" element={<Pipeline />} />
         </Route>
       </Routes>
