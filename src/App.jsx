@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import InputForm from './components/InputForm';
@@ -7,14 +8,20 @@ import MiniDrawer from './components/MiniDrawer/MiniDrawer';
 
 function App() {
   const [data, setData] = useState();
+  const [title, setTitle] = useState('Data Asset View');
 
   const childToParent = (childData) => {
     setData(childData);
   };
 
+  useEffect(() => {
+    const parsedTitle = location.pathname.replace(/\W/g, ' ');
+    setTitle(parsedTitle);
+  }, [location]);
+
   return (
     <Grid container>
-      <MiniDrawer />
+      <MiniDrawer title={title}/>
       <Grid item md={8} sx={{ marginLeft: '150px' }}>
         <Box component="main" sx={{ flexGrow: 1, p: 9 }}>
           <div>
