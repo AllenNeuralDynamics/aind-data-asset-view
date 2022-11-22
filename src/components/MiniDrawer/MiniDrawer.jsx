@@ -20,8 +20,6 @@ import IconButton from '@mui/material/IconButton';
 import drawerItems from './consts/drawerItems';
 
 const drawerWidth = 255;
-const pad = 16;
-const appbarHeight = 64;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
