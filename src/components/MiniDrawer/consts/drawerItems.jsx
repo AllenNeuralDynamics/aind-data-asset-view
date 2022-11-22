@@ -4,13 +4,13 @@ import StorageIcon from '@mui/icons-material/Storage';
 const drawerItems = [
   {
     id: 0,
-    icon: <StorageIcon />,
+    icon: <DatasetIcon />,
     label: 'Data Asset View',
     route: '/',
   },
   {
     id: 1,
-    icon: <DatasetIcon />,
+    icon: <StorageIcon />,
     label: 'Pipeline Run View',
     route: 'pipeline-run',
   },
