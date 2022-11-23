@@ -135,7 +135,12 @@ export default function MiniDrawer({ title }) {
         <Divider />
         <List>
           {drawerItems.map((item) => (
-            <ListItem key={item.id} disablePadding sx={{ display: 'block' }} onClick={() => navigate(item.route)}>
+            <ListItem
+              key={item.id}
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => navigate(item.route)}
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,

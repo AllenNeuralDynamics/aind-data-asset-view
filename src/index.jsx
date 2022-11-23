@@ -1,10 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import Pipeline from './pages/Pipeline';
