@@ -7,8 +7,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import neuralDynamicsImg from '../assets/neural_dynamics_image.jpg';
 
-const cards = [1, 2, 3];
+const cards = [1, 2, 3, 4, 5, 6];
 
 const theme = createTheme();
 
@@ -37,6 +38,7 @@ export default function MainPage() {
                 variant="h2"
                 align="center"
                 color="text.primary"
+                sx={{ paddingTop: '100px' }}
                 gutterBottom
               >
                 Allen Institute for Neural Dynamics
@@ -67,12 +69,8 @@ export default function MainPage() {
                   >
                     <CardMedia
                       component="img"
-                      sx={{
-                      // 16:9
-                        pt: '56.25%',
-                      }}
-                      image="https://source.unsplash.com/random"
-                      alt="random"
+                      src={neuralDynamicsImg}
+                      alt="MSMA"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
