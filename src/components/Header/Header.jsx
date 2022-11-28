@@ -10,8 +10,6 @@ import Typography from '@mui/material/Typography';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import HeaderItems from './consts/HeaderItems';
 
-// const PAGES = ['Home', 'Data Asset View', 'Pipeline Run View'];
-
 function Header() {
   const theme = useTheme();
   const navigate = useNavigate();

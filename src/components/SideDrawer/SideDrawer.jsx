@@ -9,8 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import HeaderItems from '../Header/consts/HeaderItems';
 
-// const PAGES = ['Home', 'Data Asset View', 'Pipeline Run View'];
-
 function SideDrawer() {
   const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = useState(false);

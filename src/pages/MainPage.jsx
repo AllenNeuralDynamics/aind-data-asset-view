@@ -38,7 +38,7 @@ export default function MainPage() {
                 variant="h2"
                 align="center"
                 color="text.primary"
-                sx={{ paddingTop: '100px' }}
+                sx={{ paddingTop: '50px' }}
                 gutterBottom
               >
                 Allen Institute for Neural Dynamics
