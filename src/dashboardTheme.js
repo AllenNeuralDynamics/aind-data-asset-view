@@ -40,10 +40,11 @@ const dashboardTheme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-    h2: {
+    h3: {
       fontSize: '1.6rem',
       color: '#FFFFFF',
-      letterSpacing: '0.05em',
+      letterSpacing: 6,
+      letterHeight: 1.5,
       textTransform: 'uppercase',
       fontWeight: 'medium',
     },
