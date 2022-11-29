@@ -20,27 +20,25 @@ function Header() {
     <AppBar>
       <Toolbar>
         <Typography sx={{ letterSpacing: 4 }}> AIND </Typography>
-        {
-          isMatch ? (
-            <SideDrawer />
-          ) : (
-            <Tabs
-              sx={{ marginLeft: 'auto' }}
-              textColor="inherit"
-              value={tab}
-              onChange={(e, value) => setTab(value)}
-              indicatorColor="secondary"
-            >
-              {HeaderItems.map((item) => (
-                <Tab
-                  key={item.id}
-                  label={item.label}
-                  onClick={() => navigate(item.route)}
-                />
-              ))}
-            </Tabs>
-          )
-        }
+        {isMatch ? (
+          <SideDrawer />
+        ) : (
+          <Tabs
+            sx={{ marginLeft: 'auto' }}
+            textColor="inherit"
+            value={tab}
+            onChange={(e, value) => setTab(value)}
+            indicatorColor="secondary"
+          >
+            {HeaderItems.map((item) => (
+              <Tab
+                key={item.id}
+                label={item.label}
+                onClick={() => navigate(item.route)}
+              />
+            ))}
+          </Tabs>
+        )}
       </Toolbar>
     </AppBar>
   );

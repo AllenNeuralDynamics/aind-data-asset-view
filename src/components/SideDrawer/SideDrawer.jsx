@@ -18,7 +18,10 @@ function SideDrawer() {
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
         <List>
           {HeaderItems.map((item) => (
-            <ListItemButton key={item.id} onClick={() => setOpenDrawer(!openDrawer)}>
+            <ListItemButton
+              key={item.id}
+              onClick={() => setOpenDrawer(!openDrawer)}
+            >
               <ListItemIcon>
                 <ListItemText onClick={() => navigate(item.route)}>
                   {item.label}
@@ -28,7 +31,10 @@ function SideDrawer() {
           ))}
         </List>
       </Drawer>
-      <IconButton sx={{ color: 'white', marginLeft: 'auto' }} onClick={() => setOpenDrawer(!openDrawer)}>
+      <IconButton
+        sx={{ color: 'white', marginLeft: 'auto' }}
+        onClick={() => setOpenDrawer(!openDrawer)}
+      >
         <MenuIcon />
       </IconButton>
     </div>
