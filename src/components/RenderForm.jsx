@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
-import '../styles/RenderForm.css';
 import DataTable from './DataTable/DataTable';
 
 function RenderForm({ userInput }) {
