@@ -6,6 +6,6 @@ test('renders App', async () => {
   render(
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   );
 });
