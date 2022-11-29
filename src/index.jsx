@@ -18,5 +18,5 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </ThemeProvider>,
+  </ThemeProvider>
 );
