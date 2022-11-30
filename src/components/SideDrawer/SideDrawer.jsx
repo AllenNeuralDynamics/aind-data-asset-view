@@ -24,9 +24,7 @@ function SideDrawer() {
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               <ListItemIcon>
-                <ListItemText >
-                  {item.label}
-                </ListItemText>
+                <ListItemText>{item.label}</ListItemText>
               </ListItemIcon>
             </ListItemButton>
           ))}
