@@ -13,13 +13,13 @@ const appBarItems = [
     id: 1,
     icon: <DatasetIcon />,
     label: 'Data Asset View',
-    route: 'data-asset',
+    route: '/data-asset',
   },
   {
     id: 2,
     icon: <StorageIcon />,
     label: 'Pipeline Run View',
-    route: 'pipeline-run',
+    route: '/pipeline-run',
   },
 ];
 

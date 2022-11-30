@@ -23,7 +23,6 @@ export default function MainPage() {
         direction="column"
       >
         <main>
-          {/* Hero unit */}
           <Box
             sx={{
               bgcolor: 'background.paper',
@@ -65,7 +64,6 @@ export default function MainPage() {
             </Container>
           </Box>
           <Container sx={{ py: 8 }} maxWidth="md">
-            {/* End hero unit */}
             <Grid container spacing={4}>
               {cards.map((card) => (
                 <Grid item key={card} xs={12} sm={6} md={4}>

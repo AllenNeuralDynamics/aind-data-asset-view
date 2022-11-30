@@ -12,7 +12,6 @@ import HeaderItems from './consts/HeaderItems';
 
 function Header() {
   const theme = useTheme();
-  // const navigate = useNavigate();
   const [tab, setTab] = useState(0);
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -36,7 +35,6 @@ function Header() {
                 label={item.label}
                 component={Link}
                 to={`${item.route}`}
-                // onClick={() => navigate(item.route)}
               />
             ))}
           </Tabs>

@@ -14,7 +14,6 @@ function App() {
         <Route path="/data-asset" element={<DataAsset />} />
         <Route path="/pipline-run" element={<Pipeline />} />
       </Routes>
-      {/* <Outlet /> */}
     </Grid>
   );
 }
