@@ -19,12 +19,12 @@ function SideDrawer() {
           {HeaderItems.map((item) => (
             <ListItemButton
               key={item.id}
+              component={Link}
+              to={`${item.route}`}
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               <ListItemIcon>
-                <ListItemText 
-                component={Link}
-                to={`${item.route}`}>
+                <ListItemText >
                   {item.label}
                 </ListItemText>
               </ListItemIcon>
