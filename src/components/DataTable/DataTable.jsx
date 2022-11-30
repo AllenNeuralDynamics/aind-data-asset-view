@@ -123,13 +123,18 @@ const columns = [
 function DataTable({ rows }) {
   return (
     <div style={{ height: 450, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} pageSize={20} />
+      <DataGrid 
+      rows={rows}
+      columns={columns}
+      pageSize={10}
+      rowsPerPageOptions={[10]}
+      />
     </div>
   );
 }
 
 DataTable.propTypes = {
-  rows: PropTypes.shape([]),
+  rows: PropTypes.shape({}),
 };
 
 DataTable.defaultProps = {

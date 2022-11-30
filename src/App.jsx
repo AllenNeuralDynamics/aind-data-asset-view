@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/data-asset" element={<DataAsset />} />
-        <Route path="/pipline-run" element={<Pipeline />} />
+        <Route path="/pipeline-run" element={<Pipeline />} />
       </Routes>
     </Grid>
   );

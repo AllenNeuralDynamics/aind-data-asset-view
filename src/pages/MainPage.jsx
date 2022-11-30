@@ -74,7 +74,9 @@ export default function MainPage() {
                       flexDirection: 'column',
                     }}
                   >
-                    <CardMedia />
+                    <CardMedia 
+                    component='div'
+                    />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
                         Heading
