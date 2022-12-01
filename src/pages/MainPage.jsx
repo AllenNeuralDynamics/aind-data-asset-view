@@ -8,7 +8,23 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const cards = [1, 2, 3];
+const cards = [
+  {
+    id: 1,
+    title: 'Highlights',
+    description: 'Events, News Articles, etc',
+  },
+  {
+    id: 2,
+    title: 'Publications',
+    description: '',
+  },
+  {
+    id: 3,
+    title: 'Data',
+    description: 'Protocols.io, OSF, GitHub',
+  },
+];
 
 const theme = createTheme();
 
@@ -47,13 +63,17 @@ export default function MainPage() {
                 color="text.secondary"
                 paragraph
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                The Allen Institute for Neural Dynamics explores the brain’s
+                activity, at the level of individual neurons and the whole
+                brain, to reveal how we interpret our environments to make
+                decisions. We aim to discover how neural signaling – and changes
+                in that signaling – allow the brain to perform complex but
+                fundamental computations and drive flexible behaviors. Our
+                experiments and openly shared resources will shed light on
+                behavior, memory, how we handle uncertainty and risk, how humans
+                and other animals chase rewards – and how some or all of these
+                complicated cognitive functions go awry in neuropsychiatric
+                disorders such as depression, ADHD, or addiction.
               </Typography>
               <Stack
                 sx={{ pt: 4 }}
@@ -66,7 +86,7 @@ export default function MainPage() {
           <Container sx={{ py: 8 }} maxWidth="md">
             <Grid container spacing={4}>
               {cards.map((card) => (
-                <Grid item key={card} xs={12} sm={6} md={4}>
+                <Grid item key={card.id} xs={12} sm={6} md={4}>
                   <Card
                     sx={{
                       height: '100%',
@@ -77,12 +97,9 @@ export default function MainPage() {
                     <CardMedia component="div" />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        Heading
+                        {card.title}
                       </Typography>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor
-                      </Typography>
+                      <Typography>{card.description}</Typography>
                     </CardContent>
                   </Card>
                 </Grid>
