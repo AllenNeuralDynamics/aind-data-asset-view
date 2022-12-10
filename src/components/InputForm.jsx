@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function InputForm({ handleData }) {
@@ -14,12 +15,17 @@ function InputForm({ handleData }) {
     handleData(formDataObject);
   };
 
+  useEffect(() => {
+    // mimic event object
+    handleData({'type': 'both'})
+  }, [])
+
   return (
     <form onSubmit={handleSubmit} data-testid="form">
       <select name="type" defaultValue="" data-testid="select-type">
+        <option defaultValue="both">Both</option>
         <option value="result">Result</option>
-        <option defaultValue="dataset">Dataset</option>
-        <option defaultValue="">Both</option>
+        <option value="dataset">Dataset</option>
       </select>
       <button type="submit" data-testid="submit-btn" aria-hidden="true">
         Submit
