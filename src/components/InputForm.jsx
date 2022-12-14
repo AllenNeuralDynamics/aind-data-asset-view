@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Stack, TextField } from '@mui/material';
 
@@ -8,6 +8,8 @@ function InputForm({ handleData }) {
    * @param {func} handleData
    * @return {string} userInput
    */
+
+  const [searchInput, setSearchInput] = useState({'query': ''});
 
   useEffect(() => {
     handleData({'type': 'both'})
@@ -19,6 +21,13 @@ function InputForm({ handleData }) {
     const formDataObject = Object.fromEntries(formData.entries());
     handleData(formDataObject);
   };
+
+  const searchHandler = (event) => {
+    const inputText = event.target.value.toLowercase();
+    setSearchInput({'query' : inputText});
+    handleData(searchInput);
+  };
+
 
   return (
     <Stack spacing={4}>
@@ -33,7 +42,7 @@ function InputForm({ handleData }) {
           Submit
         </button>
       </form>
-      <TextField label='Search all/title/author/tags' size='small' color='secondary' />
+      <TextField label='Search all/title/author/tags' size='small' color='secondary' onChange={searchHandler}/>
       </Stack>
     </Stack>
   );
