@@ -1,33 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Stack, TextField } from '@mui/material';
+import { Stack, TextField, Select, MenuItem } from '@mui/material';
 
-function InputForm({ handleData }) {
+function InputForm({ setTypeCallback, setQueryCallback }) {
   /**
-   * Function to read user input from form submit, update state, and pass to parent component.
-   * @param {func} handleData
+   * Function to read user input from form submit, update sstate, and pass to parent component.
+   * @param {func} setTypeCallback, setQueryCallback
    * @return {string} userInput
    */
 
-  const [searchInput, setSearchInput] = useState({'query': ''});
-
   useEffect(() => {
-    handleData({'type': 'both'})
+    setTypeCallback({'type': 'both'})
   }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const formDataObject = Object.fromEntries(formData.entries());
-    handleData(formDataObject);
+    setTypeCallback(formDataObject);
   };
 
-  const searchHandler = (event) => {
-    const inputText = event.target.value.toLowercase();
-    setSearchInput({'query' : inputText});
-    handleData(searchInput);
+  const handleSearch = (event) => {
+    const inputText = event.target.value;
+    console.log(inputText);
+    setQueryCallback({'query' : inputText});
   };
 
+  const handleSelect = (event) => {
+    setTypeCallback({'type': event.target.value});
+  }
 
   return (
     <Stack spacing={4}>
@@ -42,18 +43,33 @@ function InputForm({ handleData }) {
           Submit
         </button>
       </form>
-      <TextField label='Search all/title/author/tags' size='small' color='secondary' onChange={searchHandler}/>
+      <Select
+        id="type-select"
+        label="Select Type"
+        onChange={handleSelect}
+      >
+        <MenuItem value="both">Both</MenuItem>
+        <MenuItem value="result">Result</MenuItem>
+        <MenuItem value="dataset">Dataset</MenuItem>
+      </Select>
+      <TextField 
+        label='Search all/title/author/tags'
+        size='small'
+        color='secondary'
+        onChange={handleSearch}/>
       </Stack>
     </Stack>
   );
 }
 
 InputForm.propTypes = {
-  handleData: PropTypes.func,
+  setTypeCallback: PropTypes.func,
+  setQueryCallback: PropTypes.func,
 };
 
 InputForm.defaultProps = {
-  handleData: undefined,
+  setTypeCallback: undefined,
+  setQueryCallback: undefined,
 };
 
 export default InputForm;
