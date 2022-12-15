@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Stack, TextField, Select, MenuItem } from '@mui/material';
+import { FormControl, MenuItem, Select, Stack, TextField} from '@mui/material';
 
 function InputForm({ setTypeCallback, setQueryCallback }) {
   /**
@@ -22,15 +22,23 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
   };
 
   return (
-    <Stack spacing={4}>
+    <FormControl 
+    sx={{
+      display: 'flex',
+      flexDirection: 'row',
+      justtifyContent: 'space-around'
+    }
+    }>
       <Stack spacing={2} direction="row">
         <Select
           id="type-select"
-          label="Select Type"
-          value=""
+          label="Select Data Asset Type"
+          value="Select Data Asset Type"
           onChange={handleSelect}
+          autoWidth
         >
-          <MenuItem value="both">Both</MenuItem>
+          <MenuItem disabled value="">Select Data Asset Type</MenuItem>
+          <MenuItem value="both">All Data Assets</MenuItem>
           <MenuItem value="result">Result</MenuItem>
           <MenuItem value="dataset">Dataset</MenuItem>
         </Select>
@@ -41,7 +49,7 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
           onChange={handleSearch}
         />
       </Stack>
-    </Stack>
+    </FormControl>
   );
 }
 
