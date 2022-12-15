@@ -4,42 +4,37 @@ import { Stack, TextField, Select, MenuItem } from '@mui/material';
 
 function InputForm({ setTypeCallback, setQueryCallback }) {
   /**
-   * Function to read user input from form submit, update sstate, and pass to parent component.
+   * Function to read user selection from dropdown and input from search bar then pass to parent component.
    * @param {func} setTypeCallback, setQueryCallback
-   * @return {string} userInput
-   */
+   * @return {Object} { parameter: value }
+  */
 
   useEffect(() => {
-    setTypeCallback({'type': 'both'})
-  }, [])
+    setTypeCallback({ 'type': 'both' });
+  }, []);
 
   const handleSearch = (event) => {
-    const inputText = event.target.value;
-    console.log(inputText);
-    setQueryCallback({'query' : inputText});
+    setQueryCallback({ 'query': event.target.value });
   };
 
   const handleSelect = (event) => {
-    setTypeCallback({'type': event.target.value});
-  }
+    setTypeCallback({ 'type': event.target.value });
+  };
 
   return (
     <Stack spacing={4}>
-      <Stack spacing={2} direction='row'>
-      <Select
-        id="type-select"
-        label="Select Type"
-        onChange={handleSelect}
-      >
-        <MenuItem value="both">Both</MenuItem>
-        <MenuItem value="result">Result</MenuItem>
-        <MenuItem value="dataset">Dataset</MenuItem>
-      </Select>
-      <TextField 
-        label='Search all/title/author/tags'
-        size='small'
-        color='secondary'
-        onChange={handleSearch}/>
+      <Stack spacing={2} direction="row">
+        <Select id="type-select" label="Select Type" value="" onChange={handleSelect}>
+          <MenuItem value="both">Both</MenuItem>
+          <MenuItem value="result">Result</MenuItem>
+          <MenuItem value="dataset">Dataset</MenuItem>
+        </Select>
+        <TextField
+          label="Search all/title/author/tags"
+          size="small"
+          color="secondary"
+          onChange={handleSearch}
+        />
       </Stack>
     </Stack>
   );

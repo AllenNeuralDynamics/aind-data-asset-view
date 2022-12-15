@@ -8,7 +8,7 @@ const urlBuilder = (urlString, userInput, queryParam) => {
       }
     });
   }
-  
+
   if (queryParam) {
     Object.entries(queryParam).forEach(([key, value]) => {
       if (key === 'query') {
