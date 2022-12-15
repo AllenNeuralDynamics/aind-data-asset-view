@@ -7,24 +7,29 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
    * Function to read user selection from dropdown and input from search bar then pass to parent component.
    * @param {func} setTypeCallback, setQueryCallback
    * @return {Object} { parameter: value }
-  */
+   */
 
   useEffect(() => {
-    setTypeCallback({ 'type': 'both' });
+    setTypeCallback({ type: 'both' });
   }, []);
 
   const handleSearch = (event) => {
-    setQueryCallback({ 'query': event.target.value });
+    setQueryCallback({ query: event.target.value });
   };
 
   const handleSelect = (event) => {
-    setTypeCallback({ 'type': event.target.value });
+    setTypeCallback({ type: event.target.value });
   };
 
   return (
     <Stack spacing={4}>
       <Stack spacing={2} direction="row">
-        <Select id="type-select" label="Select Type" value="" onChange={handleSelect}>
+        <Select
+          id="type-select"
+          label="Select Type"
+          value=""
+          onChange={handleSelect}
+        >
           <MenuItem value="both">Both</MenuItem>
           <MenuItem value="result">Result</MenuItem>
           <MenuItem value="dataset">Dataset</MenuItem>
