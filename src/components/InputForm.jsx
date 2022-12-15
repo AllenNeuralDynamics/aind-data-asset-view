@@ -13,13 +13,6 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
     setTypeCallback({'type': 'both'})
   }, [])
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const formDataObject = Object.fromEntries(formData.entries());
-    setTypeCallback(formDataObject);
-  };
-
   const handleSearch = (event) => {
     const inputText = event.target.value;
     console.log(inputText);
@@ -33,16 +26,6 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
   return (
     <Stack spacing={4}>
       <Stack spacing={2} direction='row'>
-      <form onSubmit={handleSubmit} data-testid="form">
-        <select name="type" defaultValue="" data-testid="select-type">
-          <option defaultValue="both">Both</option>
-          <option value="result">Result</option>
-          <option value="dataset">Dataset</option>
-        </select>
-        <button type="submit" data-testid="submit-btn" aria-hidden="true">
-          Submit
-        </button>
-      </form>
       <Select
         id="type-select"
         label="Select Type"
