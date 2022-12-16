@@ -5,25 +5,22 @@ import InputForm from '../components/InputForm';
 const setup = () => {
   render(<InputForm />);
   const typeSelect = screen.getByTestId('select-type');
-  const buttonElement = screen.getByTestId('submit-btn');
 
   return {
     typeSelect,
-    buttonElement,
   };
 };
 
 describe('test input form', () => {
   test('Render input fields correctly', () => {
-    const { typeSelect, buttonElement } = setup();
+    const { typeSelect } = setup();
 
     expect(typeSelect).toBeInTheDocument();
-    expect(buttonElement).toBeInTheDocument();
   });
 
   test('Should display correct number of data asset type options', () => {
     const { typeSelect } = setup();
-    expect(typeSelect.length).toBe(3);
+    expect(typeSelect.length).toBe(4);
   });
 
   test('Form should submit correct output', () => {

@@ -36,6 +36,7 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
           value="Select Data Asset Type"
           onChange={handleSelect}
           autoWidth
+          data-testid="select-type"
         >
           <MenuItem disabled value="">
             Select Data Asset Type
