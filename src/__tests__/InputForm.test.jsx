@@ -21,10 +21,9 @@ describe('test input form', () => {
     expect(typeSelect).toBeInTheDocument();
   });
 
-  test('Should display correct number of data asset type options', () => {
+  test('Should display default data asset type option', () => {
     const { typeSelect } = setup();
     expect(typeSelect).toHaveValue('');
-    // TO-DO: test correct number of select options, test select dropdown
   });
 
   test('InputForm should submit correct output on initial render', () => {
