@@ -1,9 +1,11 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import InputForm from '../components/InputForm';
 
 const setup = () => {
-  render(<InputForm />);
+  const mockSubmit = jest.fn();
+  render(<InputForm setTypeCallback={mockSubmit} setQueryCallback={mockSubmit} />);
   const typeSelect = screen.getByTestId('select-type');
 
   return {
@@ -20,23 +22,20 @@ describe('test input form', () => {
 
   test('Should display correct number of data asset type options', () => {
     const { typeSelect } = setup();
-    expect(typeSelect.length).toBe(4);
+    expect(typeSelect).toHaveValue('');
+    // TO-DO: test correct number of select options, test select dropdown
   });
 
-  test('Form should submit correct output', () => {
+  test('InputForm should submit correct output on initial render', () => {
     const mockSubmit = jest.fn();
-    render(<InputForm handleData={mockSubmit} />);
+    render(<InputForm setTypeCallback={mockSubmit} setQueryCallback={mockSubmit} />);
 
-    fireEvent.change(screen.queryByTestId('select-type'), {
-      target: { value: 'Dataset' },
-    });
-
-    fireEvent.submit(screen.queryByTestId('form'));
+    fireEvent.submit(screen.queryByTestId('select-type'));
     expect(mockSubmit).toHaveBeenCalled();
     expect(mockSubmit.mock.calls).toEqual([
       [
         {
-          type: 'Dataset',
+          'type': 'both',
         },
       ],
     ]);

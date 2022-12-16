@@ -10,15 +10,15 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
    */
 
   useEffect(() => {
-    setTypeCallback({ type: 'both' });
+    setTypeCallback({ 'type': 'both' });
   }, []);
 
   const handleSearch = (event) => {
-    setQueryCallback({ query: event.target.value });
+    setQueryCallback({ 'query': event.target.value });
   };
 
   const handleSelect = (event) => {
-    setTypeCallback({ type: event.target.value });
+    setTypeCallback({ 'type': event.target.value });
   };
 
   return (
@@ -33,10 +33,9 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
         <Select
           id="type-select"
           label="Select Data Asset Type"
-          value="Select Data Asset Type"
           onChange={handleSelect}
           autoWidth
-          data-testid="select-type"
+          inputProps = {{ 'data-testid': 'select-type' }}
         >
           <MenuItem disabled value="">
             Select Data Asset Type
