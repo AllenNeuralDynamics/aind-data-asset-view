@@ -12,7 +12,7 @@ const setup = () => {
   const querySearch = screen.getByTestId('query-search-bar');
 
   return {
-    typeSelect, querySearch
+    typeSelect, querySearch, mockSubmit
   };
 };
 
@@ -30,12 +30,9 @@ describe('test input form', () => {
   });
 
   test('InputForm should submit correct output on initial render', () => {
-    const mockSubmit = jest.fn();
-    render(
-      <InputForm setTypeCallback={mockSubmit} setQueryCallback={mockSubmit} />
-    );
+    const { typeSelect, mockSubmit } = setup();
 
-    fireEvent.submit(screen.queryByTestId('select-type'));
+    fireEvent.submit(typeSelect);
     expect(mockSubmit).toHaveBeenCalled();
     expect(mockSubmit.mock.calls).toEqual([
       [
