@@ -7,20 +7,23 @@ const setup = () => {
   render(
     <InputForm setTypeCallback={mockSubmit} setQueryCallback={mockSubmit} />
   );
+
   const typeSelect = screen.getByTestId('select-type');
+  const querySearch = screen.getByTestId('query-search-bar');
 
   return {
-    typeSelect,
+    typeSelect, querySearch
   };
 };
 
 describe('test input form', () => {
-  test('Render input fields correctly', () => {
-    const { typeSelect } = setup();
+  test('Render input form component correctly', () => {
+    const { typeSelect, querySearch } = setup();
 
     expect(typeSelect).toBeInTheDocument();
+    expect(querySearch).toBeInTheDocument();
   });
-
+  
   test('Should display default data asset type option', () => {
     const { typeSelect } = setup();
     expect(typeSelect).toHaveValue('');

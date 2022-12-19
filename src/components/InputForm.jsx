@@ -31,11 +31,13 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
     >
       <Stack spacing={2} direction="row">
         <Select
-          id="type-select"
-          label="Select Data Asset Type"
-          onChange={handleSelect}
           autoWidth
+          defaultValue=""
           inputProps={{ 'data-testid': 'select-type' }}
+          id="type-select"
+          labelId="selectedOptionLabel"
+          label="selectDataAssetType"
+          onChange={handleSelect}
         >
           <MenuItem disabled value="">
             Select Data Asset Type
@@ -45,10 +47,13 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
           <MenuItem value="dataset">Dataset</MenuItem>
         </Select>
         <TextField
-          label="Search all/title/author/tags"
-          size="small"
           color="secondary"
+          defaultValue=""
+          id="query-search"
+          inputProps={{ 'data-testid': 'query-search-bar' }}
+          label="Search all/title/author/tags"
           onChange={handleSearch}
+          size="small"
         />
       </Stack>
     </FormControl>

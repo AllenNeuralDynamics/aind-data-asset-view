@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Header from './components/Header/Header';
 import MainPage from './pages/MainPage';
 import DataAsset from './pages/DataAsset';
-import Pipeline from './pages/Pipeline';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/data-asset" element={<DataAsset />} />
-        <Route path="/pipeline-run" element={<Pipeline />} />
       </Routes>
     </Grid>
   );

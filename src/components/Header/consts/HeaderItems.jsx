@@ -1,6 +1,5 @@
 import HomeIcon from '@mui/icons-material/Home';
 import DatasetIcon from '@mui/icons-material/Dataset';
-import StorageIcon from '@mui/icons-material/Storage';
 
 const appBarItems = [
   {
@@ -14,12 +13,6 @@ const appBarItems = [
     icon: <DatasetIcon />,
     label: 'Data Asset View',
     route: '/data-asset',
-  },
-  {
-    id: 2,
-    icon: <StorageIcon />,
-    label: 'Pipeline Run View',
-    route: '/pipeline-run',
   },
 ];
 
