@@ -29,6 +29,11 @@ describe('test input form', () => {
     expect(typeSelect).toHaveValue('');
   });
 
+  test('Should display empty query search bar on render', () => {
+    const { querySearch } = setup();
+    expect(querySearch).toHaveValue('');
+  });
+
   test('InputForm should submit correct output on initial render', () => {
     const { typeSelect, mockSubmit } = setup();
 
