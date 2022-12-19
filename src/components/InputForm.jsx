@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Box, FormControl, MenuItem, TextField } from '@mui/material';
 
 function InputForm({ setTypeCallback, setQueryCallback }) {
   /**
@@ -29,23 +29,30 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
         justtifyContent: 'space-around',
       }}
     >
-      <Stack spacing={2} direction="row">
-        <Select
-          autoWidth
-          defaultValue=""
+      <Box 
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+      >
+        <TextField
+          fullwidth
+          defaultValue="both"
           inputProps={{ 'data-testid': 'select-type' }}
           id="type-select"
           labelId="selectedOptionLabel"
-          label="selectDataAssetType"
+          label="Select Data Asset Type"
           onChange={handleSelect}
+          select
         >
-          <MenuItem disabled value="">
+          <MenuItem disabled value="disabled-default">
             Select Data Asset Type
           </MenuItem>
           <MenuItem value="both">All Data Assets</MenuItem>
           <MenuItem value="result">Result</MenuItem>
           <MenuItem value="dataset">Dataset</MenuItem>
-        </Select>
+        </TextField>
+
         <TextField
           color="secondary"
           defaultValue=""
@@ -53,9 +60,9 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
           inputProps={{ 'data-testid': 'query-search-bar' }}
           label="Search all/title/author/tags"
           onChange={handleSearch}
-          size="small"
+          size="normal"
         />
-      </Stack>
+      </Box>
     </FormControl>
   );
 }
