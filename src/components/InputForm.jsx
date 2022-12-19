@@ -29,7 +29,7 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
         justtifyContent: 'space-around',
       }}
     >
-      <Box 
+      <Box
         component="form"
         sx={{
           '& .MuiTextField-root': { m: 1, width: '25ch' },

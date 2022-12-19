@@ -12,7 +12,9 @@ const setup = () => {
   const querySearch = screen.getByTestId('query-search-bar');
 
   return {
-    typeSelect, querySearch, mockSubmit
+    typeSelect,
+    querySearch,
+    mockSubmit,
   };
 };
 
@@ -23,10 +25,10 @@ describe('test input form', () => {
     expect(typeSelect).toBeInTheDocument();
     expect(querySearch).toBeInTheDocument();
   });
-  
+
   test('Should display default data asset type option', () => {
     const { typeSelect } = setup();
-    expect(typeSelect).toHaveValue('');
+    expect(typeSelect).toHaveValue('both');
   });
 
   test('Should display empty query search bar on render', () => {
