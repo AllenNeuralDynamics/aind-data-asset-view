@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import urlBuilder from '../utilities/utils';
 import DataTable from './DataTable/DataTable';
 
-function RenderForm({ userInput }) {
+function RenderForm({ typeDropdown, querySelect }) {
   /**
    * Perform GET request
    * Render response from GET request
@@ -15,8 +15,8 @@ function RenderForm({ userInput }) {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    if (userInput) {
-      const url = urlBuilder(urlProxy, userInput);
+    if (typeDropdown || querySelect) {
+      const url = urlBuilder(urlProxy, typeDropdown, querySelect);
       const getResponse = async () => {
         const response = await fetch(url).catch((error) => {
           if (!error.response) {
@@ -29,7 +29,7 @@ function RenderForm({ userInput }) {
       getResponse();
       setMessage(null);
     }
-  }, [userInput]);
+  }, [typeDropdown, querySelect]);
 
   if (message) {
     return <div>{message}</div>;
@@ -44,11 +44,13 @@ function RenderForm({ userInput }) {
 }
 
 RenderForm.propTypes = {
-  userInput: PropTypes.shape({}),
+  typeDropdown: PropTypes.shape({}),
+  querySelect: PropTypes.shape({}),
 };
 
 RenderForm.defaultProps = {
-  userInput: undefined,
+  typeDropdown: undefined,
+  querySelect: undefined,
 };
 
 export default RenderForm;
