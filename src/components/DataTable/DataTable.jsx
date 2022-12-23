@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from 'luxon';
+import Chip from '@mui/material/Chip';
 
 const convertTimestamp = (timeValue) => {
   const formattedDatetime = DateTime.fromSeconds(timeValue).toLocaleString(
@@ -8,6 +9,12 @@ const convertTimestamp = (timeValue) => {
   );
   return formattedDatetime;
 };
+
+function getChipProps(params) {
+  return {
+    label: params.value,
+  };
+}
 
 const columns = [
   {
@@ -57,6 +64,9 @@ const columns = [
   {
     field: 'tags',
     headerName: 'Tags',
+    renderCell: (params) => {
+        <Chip color="secondary" variant="outlined" {...getChipProps(params.value)} />
+    },
     minWidth: 200,
   },
   {
