@@ -14,7 +14,10 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
   }, []);
 
   const handleSearch = (event) => {
-    setQueryCallback({ query: event.target.value });
+    // Request is made when "Enter" key is pressed
+    if (event.keyCode === 13) {
+      setQueryCallback({ query: event.target.value });
+    }
   };
 
   const handleSelect = (event) => {
@@ -59,7 +62,7 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
           id="query-search"
           inputProps={{ 'data-testid': 'query-search-bar' }}
           label="Search all/title/author/tags"
-          onChange={handleSearch}
+          onKeyDown={handleSearch}
           size="normal"
         />
       </Box>
