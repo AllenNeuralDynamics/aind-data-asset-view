@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from 'luxon';
-import prettyBytes from 'pretty-bytes';
+import { filesize } from 'filesize';
 
 const convertTimestamp = (timeValue) => {
   const formattedDatetime = DateTime.fromSeconds(timeValue).toLocaleString(
@@ -46,7 +46,7 @@ const columns = [
   {
     field: 'size',
     headerName: 'File Size',
-    valueFormatter: (params) => prettyBytes(params.value),
+    valueFormatter: (params) => filesize(params.value),
     minWidth: 150,
   },
   {
