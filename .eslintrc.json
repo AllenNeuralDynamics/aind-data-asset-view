@@ -25,16 +25,22 @@
         "prettier"
     ],
     "rules": {
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "linebreak-style": ["error", "unix"],
+        "quotes": [
+            "error",
+            "single"
+        ],
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
         "react/no-unstable-nested-components": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/jsx-props-no-spreading": "off",
-        "quotes": [
-            "error",
-            "single"
-        ],
         "operator-linebreak": "off"
     }
 }

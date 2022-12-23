@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from 'luxon';
+import { filesize } from 'filesize';
 
 const convertTimestamp = (timeValue) => {
   const formattedDatetime = DateTime.fromSeconds(timeValue).toLocaleString(
@@ -12,22 +13,24 @@ const convertTimestamp = (timeValue) => {
 const columns = [
   {
     field: 'created',
-    headerName: 'Date',
+    headerName: 'Date Created',
     valueFormatter: (params) => convertTimestamp(params?.value),
     minWidth: 200,
   },
   {
-    field: 'description',
-    headerName: 'Description',
-  },
-  {
-    field: 'files',
-    headerName: 'Files',
+    field: 'name',
+    headerName: 'Filename',
+    minWidth: 400,
   },
   {
     field: 'id',
     headerName: 'ID',
     minWidth: 325,
+  },
+  {
+    field: 'tags',
+    headerName: 'Tags',
+    minWidth: 200,
   },
   {
     field: 'last_used',
@@ -41,13 +44,9 @@ const columns = [
     minWidth: 200,
   },
   {
-    field: 'name',
-    headerName: 'Name',
-    minWidth: 400,
-  },
-  {
     field: 'size',
-    headerName: 'Size',
+    headerName: 'File Size',
+    valueFormatter: (params) => filesize(params.value),
     minWidth: 150,
   },
   {
@@ -55,13 +54,16 @@ const columns = [
     headerName: 'State',
   },
   {
-    field: 'tags',
-    headerName: 'Tags',
-    minWidth: 200,
-  },
-  {
     field: 'type',
     headerName: 'Type',
+  },
+  {
+    field: 'files',
+    headerName: 'Files',
+  },
+  {
+    field: 'description',
+    headerName: 'Description',
   },
   {
     field: 'capsule',

@@ -39,11 +39,10 @@ function InputForm({ setTypeCallback, setQueryCallback }) {
         }}
       >
         <TextField
-          fullwidth
+          fullwidth="true"
           defaultValue="both"
           inputProps={{ 'data-testid': 'select-type' }}
           id="type-select"
-          labelId="selectedOptionLabel"
           label="Select Data Asset Type"
           onChange={handleSelect}
           select
