@@ -1,36 +1,11 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import exaSPIM from '../images/AIND_exaspim.jpg';
-import allenHQ from '../images/allen-institute-hq.jpg';
-import astrocytes from '../images/astrocytes_and_astrocyte_morphology.jpg';
-
-const cards = [
-  {
-    id: 1,
-    title: 'Highlights',
-    description: 'Events and News',
-    image: allenHQ,
-  },
-  {
-    id: 2,
-    title: 'Publications',
-    description: '',
-    image: astrocytes,
-  },
-  {
-    id: 3,
-    title: 'Data',
-    description: 'Protocols.io, OSF, GitHub',
-    image: exaSPIM,
-  },
-];
+import HighlightCard from '../components/Cards/HighlightCard';
+import cards from '../components/Cards/consts/cardItems';
 
 const theme = createTheme();
 
@@ -93,21 +68,7 @@ export default function MainPage() {
             <Grid container spacing={4}>
               {cards.map((card) => (
                 <Grid item key={card.id} xs={12} sm={6} md={4}>
-                  <Card
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }}
-                  >
-                    <CardMedia component="img" src={card.image} />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {card.title}
-                      </Typography>
-                      <Typography>{card.description}</Typography>
-                    </CardContent>
-                  </Card>
+                  <HighlightCard cardDetails={card}/>
                 </Grid>
               ))}
             </Grid>
