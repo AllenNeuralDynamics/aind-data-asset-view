@@ -7,22 +7,28 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import exaSPIM from '../images/AIND_exaspim.jpg';
+import allenHQ from '../images/allen-institute-hq.jpg';
+import astrocytes from '../images/astrocytes_and_astrocyte_morphology.jpg';
 
 const cards = [
   {
     id: 1,
     title: 'Highlights',
-    description: 'Events, News Articles, etc',
+    description: 'Events and News',
+    image: allenHQ,
   },
   {
     id: 2,
     title: 'Publications',
     description: '',
+    image: astrocytes,
   },
   {
     id: 3,
     title: 'Data',
     description: 'Protocols.io, OSF, GitHub',
+    image: exaSPIM,
   },
 ];
 
@@ -94,7 +100,7 @@ export default function MainPage() {
                       flexDirection: 'column',
                     }}
                   >
-                    <CardMedia component="div" />
+                    <CardMedia component="img" src={card.image} />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="h2">
                         {card.title}
