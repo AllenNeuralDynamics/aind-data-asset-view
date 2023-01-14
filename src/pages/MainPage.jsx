@@ -68,7 +68,7 @@ export default function MainPage() {
             <Grid container spacing={4}>
               {cards.map((card) => (
                 <Grid item key={card.id} xs={12} sm={6} md={4}>
-                  <HighlightCard cardDetails={card}/>
+                  <HighlightCard cardDetails={card} />
                 </Grid>
               ))}
             </Grid>
