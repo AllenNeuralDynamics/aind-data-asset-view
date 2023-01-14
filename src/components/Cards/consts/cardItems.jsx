@@ -40,6 +40,23 @@ const dataCard = (
   </>
 );
 
+const publicationsCard = (
+  <>
+    <Typography paragraph variant="body1">
+      <Link href="https://www.nature.com/articles/s41592-022-01468-5">
+        <strong>A hybrid open-top light-sheet microscope for versatile multi-scale imaging of cleared tissues</strong>
+      </Link>
+    </Typography>
+    <Typography sx={{fontStyle:'italic'}}>
+      Nature Methods, May 2022
+    </Typography>
+    <Typography>
+      Glaser, A.K., Bishop, K.W., Barner, L.A. et al.
+    </Typography>
+  </>
+);
+
+
 const cards = [
   {
     id: 1,
@@ -52,6 +69,7 @@ const cards = [
     title: 'Publications',
     description: 'Recent publications from AIND',
     image: astrocytes,
+    content: publicationsCard,
   },
   {
     id: 3,
