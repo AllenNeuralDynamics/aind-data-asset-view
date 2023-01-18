@@ -1,6 +1,8 @@
 # aind-data-asset-view
 
-React application to interact with CodeOcean's API to view registered data assets.
+React application to interact with Code Ocean's API to view registered data assets.
+
+This application was [deployed](https://aind-data-asset-view-dot-neural-dynamics-dev.uw.r.appspot.com/) through GCP App Engine.
 
 ## Getting Started with Create React App
 
@@ -79,9 +81,9 @@ In the project root directory, run:
 
 #### `npm init @eslint/config`
 
-This will install ESLint and create a config file (.eslintrc). I've selected the Airbnb Style Guide and JSON for the config file format.
+This will install ESLint and create a config file (.eslintrc). Choose the Airbnb Style Guide and JSON for the config file format.
 
-In the package.json file update 'scripts' to include:
+In the package.json file, update 'scripts' to include:
 
 ```
 "lint": "eslint \"src/**/*.{js,jsx}\"",
@@ -110,7 +112,7 @@ Prettier should be last in the array to overwrite previous rules.
 
 In the project root directory, create a .prettierrc file.
 
-Below is my current Prettier config.
+Below is the current Prettier config.
 
 ```
 {
@@ -120,7 +122,7 @@ Below is my current Prettier config.
 }
 ```
 
-In the package.json file update 'scripts' to include:
+In the package.json file, update 'scripts' to include:
 ```
 "format": "prettier --check ./src",
 "format-fix": "prettier --write ./src"
@@ -128,7 +130,7 @@ In the package.json file update 'scripts' to include:
 
 Once the package.json file is updated, you can run `npm run format-fix` to execute and fix code format. After this, run `npm run format` to see that all files have been formatted correctly.
 
-Apply Prettier when files are saved in VSCode:
+#### Apply Prettier when files are saved in VS Code:
 
 - Install the Prettier extension
 - Go into Settings
