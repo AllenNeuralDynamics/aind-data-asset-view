@@ -13,7 +13,7 @@ export default function MainPage() {
   /**
    * Main page for the Data Asset View project.
    */
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Grid

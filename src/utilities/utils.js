@@ -1,6 +1,6 @@
 const urlBuilder = (urlString, userInput, queryParam) => {
   /**
-   * Function to read in a url and user input from dropdown menu and query search, then 
+   * Function to read in a url and user input from dropdown menu and query search, then
    * create and return a completed query string.
    * @returns {string} Query string for GET request to the Code Ocean API
    */
