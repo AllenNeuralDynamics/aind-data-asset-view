@@ -4,6 +4,9 @@ import { DateTime } from 'luxon';
 import { filesize } from 'filesize';
 
 const convertTimestamp = (timeValue) => {
+  /**
+   * Converts UNIX Epoch timestamp to a human readable format.
+   */
   const formattedDatetime = DateTime.fromSeconds(timeValue).toLocaleString(
     DateTime.DATETIME_MED
   );

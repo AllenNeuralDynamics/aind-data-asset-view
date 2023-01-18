@@ -10,6 +10,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HeaderItems from '../Header/consts/HeaderItems';
 
 function SideDrawer() {
+  /**
+   * Functional component to hold state and routes for the side navigation menu.
+   */
+
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (

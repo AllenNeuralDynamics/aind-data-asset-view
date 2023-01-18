@@ -9,6 +9,7 @@ function RenderForm({ typeDropdown, querySelect }) {
    * Render response from GET request
    * @return {React.ReactComponentElement} Table header and rows
    */
+
   const urlProxy = 'http://localhost:8080/data_assets?';
 
   const [tableData, setTableData] = useState();
