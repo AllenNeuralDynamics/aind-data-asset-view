@@ -22,6 +22,11 @@ const ExpandMore = styled((props) => {
 }));
 
 function HighlightCard({ cardDetails }) {
+  /**
+   * Functional component for rendering a Material UI Card component.
+   * @param {list}
+   * @return {React.ReactComponentElement}
+   */
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

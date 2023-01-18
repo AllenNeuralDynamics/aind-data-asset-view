@@ -14,6 +14,10 @@ const convertTimestamp = (timeValue) => {
 };
 
 const columns = [
+  /**
+   * Specifies the columns for the MUI Data Grid component
+   */
+
   {
     field: 'created',
     headerName: 'Date Created',
@@ -126,6 +130,12 @@ const columns = [
 ];
 
 function DataTable({ rows }) {
+  /**
+   * Functional component that takes in specified rows and columns and returns a Material UI Data Grid component.
+   * @param {object} JSON data returned from GET request
+   * @return {React.ReactComponentElement}
+   */
+
   return (
     <div style={{ height: 450, width: '100%' }}>
       <DataGrid
