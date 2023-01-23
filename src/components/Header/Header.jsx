@@ -11,6 +11,11 @@ import SideDrawer from '../SideDrawer/SideDrawer';
 import HeaderItems from './consts/HeaderItems';
 
 function Header() {
+  /**
+   * Functional component that holds state and routes for navigation tabs
+   * Renders the Header for the app.
+   */
+
   const theme = useTheme();
   const [tab, setTab] = useState(0);
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));

@@ -10,6 +10,10 @@ import cards from '../components/Cards/consts/cardItems';
 const theme = createTheme();
 
 export default function MainPage() {
+  /**
+   * Main page for the Data Asset View project.
+   */
+
   return (
     <ThemeProvider theme={theme}>
       <Grid

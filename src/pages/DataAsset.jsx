@@ -8,7 +8,6 @@ function DataAsset() {
   /**
    * Functional component to hold state from dropdown menu and search bar,
    * and render the Data Asset page.
-   *
    */
 
   const [typeSelection, setTypeSelection] = useState();
